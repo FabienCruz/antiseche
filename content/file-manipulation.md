@@ -1,9 +1,9 @@
 ---
 title: Manipuler des fichiers et des répertoires
 status: publish
-date: 05-12-2020
+date: 12-12-2020
 ---
-# Tutoriels
+## Tutoriels
 
 - [Tutoriel sur pathlib](https://realpython.com/python-pathlib/) Utilisation de pathlib.
 
@@ -12,7 +12,7 @@ date: 05-12-2020
 - [Tutoriel](https://realpython.com/working-with-files-in-python/) avec les principales actions de manipulation de fichier et de répertoire, plus classique avec les chaînes de caractères.
 
 
-# Bibliothèques utiles
+## Bibliothèques utiles
 
 - [pathlib](https://docs.python.org/fr/3/library/pathlib.html)pathlib est une bibliothèque existante depuis python3.4 qui permet d'utiliser des objets pour les chemins de répertoire, plutôt que leur représentation sous forme de chaîne de caractère. La différence est expliquée sur ce [blog](https://snarky.ca/why-pathlib-path-doesn-t-inherit-from-str/). **Pathlib permet de naviguer entre les dossiers et de gérer les fichiers, en très peu de lignes de code.**
 

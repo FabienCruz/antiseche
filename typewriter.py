@@ -1,3 +1,5 @@
+# remplacé par app.py
+
 import os, glob, pathlib, re, datetime
 from tkinter import *
 from tkinter import font, ttk, messagebox
