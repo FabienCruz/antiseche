@@ -1,7 +1,7 @@
 ---
 title: Utiliser Git
-status: draft
-date: 12-12-2020
+status: publish
+date: 13-12-2020
 ---
 ## Utiliser les branches
 
