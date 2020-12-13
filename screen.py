@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import font, ttk
+from jinja2 import Environment, FileSystemLoader
 import service, file, markdown
 
 class Screen:
@@ -90,12 +91,12 @@ class Screen:
         front_matter = "---\ntitle: {}\nstatus: {}\ndate: {}\n---\n".format(self.title_text.get(), self.publish_value.get(), date)
         self.txt.insert('1.0', front_matter)
 
-    def normalize_filename(self):
+    def normalize_filename(self, exts):
         if self.file_name == '':
             service.info("Le fichier n'a pas de nom")
         else:
             f_name = re.sub("\s", "-", self.file_name.get().strip())
-            f_name = "{}.md".format(f_name)
+            f_name = "{}{}".format(f_name, exts)
             return f_name
 
     def clean_it(self):
@@ -130,27 +131,44 @@ class Screen:
             self.update_list()
             self.erase_screen()
 
+    def new_file(self, dir, exts):
+        n_file = self.normalize_filename(exts)
+        return self.directory.path / n_file
+
     def create_file(self):
-        new_file = self.directory.path / self.normalize_filename()
+        new_f = self.new_file(self.directory, self.extension)
         self.insert_frontmatter()
-        new_file.write_text(self.txt.get('1.0', 'end'))
-        new_file = file.File(new_file)
-        new_file.parse_body(new_file.full_path.read_text())
-        return new_file
+        new_f.write_text(self.txt.get('1.0', 'end'))
+        new_f = file.File(new_f)
+        new_f.parse_body(new_f.full_path.read_text())
+        return new_f
 
     def save(self):
         if self.file_name.get() == '':
             return service.info("Le fichier n'a pas de nom")
         else:
-            new_file = self.create_file()
+            new_f = self.create_file()
             self.update_list()
             self.erase_screen()
-            self.display(new_file.full_path.stem, new_file.body)
+            self.display(new_f.full_path.stem, new_f.body)
+
+    def html_content(self):
+        new_file = self.create_file()
+        return markdown.markdown(new_file.body['text'])
 
     def publish(self):
         if self.publish_value.get() == 'draft':
             return service.info("Le fichier est un brouillon (case à cocher)")
         else:
-            new_file = self.create_file()
-            self.erase_screen()
-            print(markdown.markdown(new_file.body['text']))
+            content = self.html_content()
+            file_loader = FileSystemLoader('templates')
+            env = Environment(loader=file_loader)
+            template = env.get_template('page.html')
+            output = template.render(content=content)
+            self.html_file(output)
+
+    def html_file(self, content):
+        dir = file.Directory('docs/')
+        n_file = self.normalize_filename('.html')
+        nw_file = dir.path / n_file
+        nw_file.write_text(content)
