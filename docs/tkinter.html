@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <nav></nav>
+        
+        <main>
+            <h2>Description</h2>
+<p>Tkinter est une bibliothèque qui sert à réaliser des GUI (Graphical User Interface).</p>
+<p>Elle est intégrée de base à Python3 (pas besoin d'installation, de faire <code>pip install</code>).</p>
+<h2>Liens utiles</h2>
+<ul>
+<li>
+<p><a href="https://realpython.com/python-gui-tkinter/">Tutoriel</a> Les bases qui permettent de construire une première application simple (un éditeur de texte pour créer des fichiers txt en l'occurrence). Détaille de manière claire la partie graphique.</p>
+</li>
+<li>
+<p><a href="https://tkdocs.com/index.html">Tutoriel</a> va plus loin dans les explications, en donnant du contexte. Tutoriel multi-langage de programmation.</p>
+</li>
+<li>
+<p><a href="https://www.pyinstaller.org/">Lien vers pyinstaller</a> afin de générer un fichier exécutable (.exe sur windows)</p>
+</li>
+<li>
+<p><a href="https://docs.python.org/fr/3.9/library/tkinter.html">Documentation officielle tkinter</a> orientée expert.</p>
+</li>
+</ul>
+<h2>Importer la bibliothèque tkinter et créer un objet tkinter</h2>
+<p><code>from tkinter import *</code></p>
+<p><code>window=Tk()</code></p>
+<p><code>window.mainloop()</code></p>
+<p>L'objet nommé ici <code>window</code> crée l'application. Entre ces 2 lignes, on place les 'widgets' ('bitoniot / petit dispositif de commande' traduction au choix) comme des champs et des boutons.</p>
+<p>Les noms des widgets sont explicites Button, Text, Label, Listbox.</p>
+<p>Il est possible de les configurer.</p>
+<p>L'application peut être liée à une base de données ou une API. Il est possible de générer et de gérer des fichiers.</p>
+<p><code>ttk</code> est la version utilisée depuis Python 3.1 avec des widgets associés à des thèmes <em>graphiques</em>.</p>
+<p><img alt="exemple d'interface avec Tkinter" src="../images/Tkinter.png" /></p>
+<h1>Avis personnel</h1>
+<p>Tkinter a été créée initialement en 1988 en tcl, plus ancienne que python donc. Elle existe aussi en PERL et en Ruby.</p>
+<p><strong>Le résultat a vite un look "informatique des années 90".</strong></p>
+<p>Tkinkter utilise, par défaut, les composants du système d'exploitation (windows, mac os ou linux). Le mieux est de conserver le style par défaut.</p>
+<p><strong>Pratique pour faire rapidement des utilitaires de bureau.</strong></p>
+<p>La GUI leader est <a href="https://www.electronjs.org/">electronjs</a> en javascript basée sur Nodejs (visual studio code, figma, whatApps, slack, facebook messenger et d'autres ont été créées avec)</p>
+<p>En Python, la plus sophistiquée est <a href="https://fr.wikipedia.org/wiki/PyQt">PyQt</a> (dropbox a été développée avec)</p>
+<p><a href="https://pypi.org/project/Eel/">eel</a> est une version "style electron" allégée utilisant HTML/CSS/JS et basée sur Python <a href="https://medium.com/wronmbertech/create-a-gui-application-to-translate-text-using-python-9a4e4ef0e52c">un exemple dans cet article</a>. les créateurs de 'eel' citent <a href="https://pypi.org/project/cefpython3/">cefpython</a> comme une version plus proche de electron et aussi plus complexe.</p>
+        </main>
+        
+        <script src="" async defer></script>
+    </body>
+</html>
