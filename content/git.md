@@ -1,7 +1,7 @@
 ---
 title: Utiliser Git
 status: publish
-date: 13-12-2020
+date: 01-03-2021
 ---
 ## Utiliser les branches
 
