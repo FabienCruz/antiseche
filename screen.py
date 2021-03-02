@@ -131,6 +131,11 @@ class Screen:
             self.update_list()
             self.erase_screen()
 
+    def update_screen(self):
+        self.update_list()
+        self.erase_screen()
+        self.display(self.full_path.stem, self.body)
+
     def new_file(self, dir, exts):
         n_file = self.normalize_filename(exts)
         return self.directory.path / n_file
