@@ -151,8 +151,6 @@ class Screen:
         n_file = self.normalize_filename(exts)
         return self.directory.path / n_file
 
-    # gestion des fichiers html
-
     def create_file(self):
         new_f = self.new_file(self.directory, self.extension)
         self.insert_frontmatter()
@@ -160,6 +158,8 @@ class Screen:
         new_f = file.File(new_f)
         new_f.parse_body(new_f.full_path.read_text())
         return new_f
+
+    # gestion des fichiers html
 
     def publish(self):
         if self.publish_value.get() == 'draft':
