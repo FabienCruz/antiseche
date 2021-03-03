@@ -86,19 +86,6 @@ class Screen:
         self.list_titles = self.directory.list_files(self.extension)
         self.list_choices.set(self.directory.list_files(self.extension))
 
-    def insert_frontmatter(self):
-        date = service.today()
-        front_matter = "---\ntitle: {}\nstatus: {}\ndate: {}\n---\n".format(self.title_text.get(), self.publish_value.get(), date)
-        self.txt.insert('1.0', front_matter)
-
-    def normalize_filename(self, exts):
-        if self.file_name == '':
-            service.info("Le fichier n'a pas de nom")
-        else:
-            f_name = re.sub("\s", "-", self.file_name.get().strip())
-            f_name = "{}{}".format(f_name, exts)
-            return f_name
-
     def clean_it(self):
         return self.txt.compare("end-1c", "==", "1.0") or service.alert("Le contenu en cours va être effacé")
 
@@ -116,7 +103,7 @@ class Screen:
 
     def erase(self):
         if self.clean_it(): self.erase_screen()
-        
+
     def open(self):
         if self.clean_it():
             self.erase_screen()
@@ -136,18 +123,6 @@ class Screen:
         self.erase_screen()
         self.display(self.full_path.stem, self.body)
 
-    def new_file(self, dir, exts):
-        n_file = self.normalize_filename(exts)
-        return self.directory.path / n_file
-
-    def create_file(self):
-        new_f = self.new_file(self.directory, self.extension)
-        self.insert_frontmatter()
-        new_f.write_text(self.txt.get('1.0', 'end'))
-        new_f = file.File(new_f)
-        new_f.parse_body(new_f.full_path.read_text())
-        return new_f
-
     def save(self):
         if self.file_name.get() == '':
             return service.info("Le fichier n'a pas de nom")
@@ -156,10 +131,35 @@ class Screen:
             self.update_list()
             self.erase_screen()
             self.display(new_f.full_path.stem, new_f.body)
+    
+    # à mettre dans file
 
-    def html_content(self):
-        new_file = self.create_file()
-        return markdown.markdown(new_file.body['text'])
+    def insert_frontmatter(self):
+        date = service.today()
+        front_matter = "---\ntitle: {}\nstatus: {}\ndate: {}\n---\n".format(self.title_text.get(), self.publish_value.get(), date)
+        self.txt.insert('1.0', front_matter)
+
+    def normalize_filename(self, exts):
+        if self.file_name == '':
+            service.info("Le fichier n'a pas de nom")
+        else:
+            f_name = re.sub("\s", "-", self.file_name.get().strip())
+            f_name = "{}{}".format(f_name, exts)
+            return f_name
+
+    def new_file(self, dir, exts):
+        n_file = self.normalize_filename(exts)
+        return self.directory.path / n_file
+
+    # gestion des fichiers html
+
+    def create_file(self):
+        new_f = self.new_file(self.directory, self.extension)
+        self.insert_frontmatter()
+        new_f.write_text(self.txt.get('1.0', 'end'))
+        new_f = file.File(new_f)
+        new_f.parse_body(new_f.full_path.read_text())
+        return new_f
 
     def publish(self):
         if self.publish_value.get() == 'draft':
@@ -177,3 +177,7 @@ class Screen:
         n_file = self.normalize_filename('.html')
         nw_file = dir.path / n_file
         nw_file.write_text(content)
+
+    def html_content(self):
+        new_file = self.create_file()
+        return markdown.markdown(new_file.body['text'])
