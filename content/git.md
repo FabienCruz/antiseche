@@ -1,7 +1,7 @@
 ---
 title: Utiliser Git
 status: publish
-date: 01-03-2021
+date: 03-03-2021
 ---
 ## Utiliser les branches
 
@@ -14,8 +14,11 @@ Se déplacer ou créer une nouvelle branche (pas d'espace dans le nom)
 Procédure d'enregistrement sur la branche
 
 `gst`
+
 `git add .`
+
 `git commit -m'nom-qui-a-du-sens'`
+
 `git push origin nom-de-la-branche`
 
 Pour intégrer la branche sur la version principale (pull request)
@@ -27,6 +30,7 @@ click pull merge
 Pour remettre la version principale sur son poste
 
 `git checkout master` raccourci `gco`
+
 `git pull origin master`
 
 Pour nettoyer les branches qui ont été intégrées
@@ -42,5 +46,6 @@ Remettre la version principale sur la branche
 `git merge master` 
 
 
-montre les braches
+montre les branches
+
 `git branch`
