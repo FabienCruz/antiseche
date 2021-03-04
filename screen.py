@@ -146,7 +146,7 @@ class Screen:
 
     def html_file(self, content):
         dir = file.Directory('docs/')
-        n_file = self.normalize_filename('.html')
+        n_file = file.File.normalize_filename('.html')
         nw_file = dir.path / n_file
         nw_file.write_text(content)
 
