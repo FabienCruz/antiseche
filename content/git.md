@@ -5,7 +5,7 @@ date: 03-03-2021
 ---
 ## Tutoriel
 
-[tutoriel](https://realpython.com/python-git-github-intro/) excellent site pour apprendre.
+[tutoriel](https://realpython.com/python-git-github-intro/) excellent site pour apprendre
 
 ## Utiliser les branches
 

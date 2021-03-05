@@ -2,12 +2,17 @@ from jinja2 import Environment, FileSystemLoader
 import pathlib, glob, re
 import file, markdown
 
-
+# récupérer la liste des fichiers
 def list_files(self):
     list_f = list(self.directory.path.glob('*.md'))
     for f in list_f:
         print(f)
-
+# faire une boucle avec la liste des fichiers
+# récupérer le contenu d'un fichier
+# utiliser la fonction parse_body pour créer un dictionnaire file
+# ajouter le nom du fichier au dictionnaire et le lien url
+# générer un fichier page.html et navigation html
+# générer un fichier index.html
 
 """
 def publish(self):
