@@ -1,10 +1,9 @@
 from tkinter import *
 from tkinter import font, ttk
-from jinja2 import Environment, FileSystemLoader
-import service, file, markdown
+import service, file, sitegenerator
 
 class Screen:
-    def __init__(self, window, directory, extension, files):
+    def __init__(self, window, directory, extension):
         
         self.directory = directory
         self.extension = extension
@@ -27,7 +26,7 @@ class Screen:
         listframe = ttk.Frame(window, padding=(16, 4, 4, 4))
         listframe.grid(column=0, row=1, sticky=(N, S, W, E))
 
-        self.list_titles = files
+        self.list_titles = self.directory.list_files(self.extension)
         self.list_choices = StringVar(value=self.list_titles)
         self.list_doc = Listbox(listframe, height=6, width=30, relief=FLAT, listvariable=self.list_choices)
         self.list_doc.grid(row=0, column=0, columnspan=2, sticky=(W,E))
@@ -134,22 +133,4 @@ class Screen:
     # gestion des fichiers html
 
     def publish(self):
-        if self.publish_value.get() == 'draft':
-            return service.info("Le fichier est un brouillon (case à cocher)")
-        else:
-            content = self.html_content()
-            file_loader = FileSystemLoader('templates')
-            env = Environment(loader=file_loader)
-            template = env.get_template('page.html')
-            output = template.render(content=content)
-            self.html_file(output)
-
-    def html_file(self, content):
-        dir = file.Directory('docs/')
-        n_file = file.File.normalize_filename('.html')
-        nw_file = dir.path / n_file
-        nw_file.write_text(content)
-
-    def html_content(self):
-        new_file = self.create_file()
-        return markdown.markdown(new_file.body['text'])
+        sitegenerator.list_files(self)

@@ -1,0 +1,7 @@
+<nav>
+    <li>
+        {% for title in titles %}
+            <ul><a href=" {{ title.url }} "> {{ title.label }} </a></ul>
+        {% endfor %}
+    </li>
+</nav>
