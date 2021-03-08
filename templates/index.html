@@ -16,8 +16,8 @@
         <!-- ajouter texte de ReadMe -->
 
         <ul>
-            {% for title in titles %}
-                <li><a href=" {{ title.url }} "> {{ title.label }} </a></li>
+            {% for file in files %}
+                <ul><a href=" {{ file.name }} "> {{ file.title }} </a></ul>
             {% endfor %}
         </ul>
         

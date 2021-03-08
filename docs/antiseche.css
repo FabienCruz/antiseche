@@ -1,5 +1,9 @@
+body {
+    display: flex;
+}
+
 main {
-    width: 80%;
+    width: 75%;
     margin-left: auto;
     padding: 0 0.5em;
     font-family: sans-serif;
@@ -8,3 +12,12 @@ main {
     color: rgba(0, 0, 0, 0.75);
 }
 
+nav {
+    width: 25%;
+    background-color: gainsboro;
+    /* height scroll et fixe*/
+}
+
+nav ul {
+    list-style-type: none;
+}

@@ -5,13 +5,37 @@ import file, markdown
 # récupérer la liste des fichiers
 def list_files(self):
     list_f = list(self.directory.path.glob('*.md'))
-    for f in list_f:
-        print(f)
-# faire une boucle avec la liste des fichiers
+    file_obj = file.File(list_f[0])
+    file_content = get_file_content(list_f[0])
+    file_dict = dict_file(file_obj, file_content)
+    file_content = turn_to_html(file_dict['text'])
+    generate_html_file(list_f, file_content)
+    # faire une boucle avec la liste des fichiers
+    #for f in list_f:
+    #    print(f)
+
 # récupérer le contenu d'un fichier
-# utiliser la fonction parse_body pour créer un dictionnaire file
-# ajouter le nom du fichier au dictionnaire et le lien url
-# générer un fichier page.html et navigation html
+def get_file_content(file_selected):
+    return file.File(file_selected).full_path.read_text()
+
+def dict_file(file_obj, file_content):
+    file_d = file_obj.parse_body(file_content)
+    file_d["name"]= file_obj.full_path.stem
+    return file_d
+
+def turn_to_html(text):
+    return markdown.markdown(text)
+
+def generate_html_file(files, file_content):
+    file_loader = FileSystemLoader('templates')
+    env = Environment(loader=file_loader)
+    template = env.get_template('page.html')
+    output = template.render(files=files, content=file_content)
+    print(output)
+
+
+# corriger navigation
+# enregistrer un html
 # générer un fichier index.html
 
 """
