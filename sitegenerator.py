@@ -29,7 +29,7 @@ def turn_to_html(text):
 def generate_html_file(files, file_content):
     file_loader = FileSystemLoader('templates')
     env = Environment(loader=file_loader)
-    template = env.get_template('page.html')
+    template = env.getgst_template('page.html')
     output = template.render(files=files, content=file_content)
     print(output)
 
