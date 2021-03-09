@@ -5,33 +5,33 @@ import file, markdown
 # récupérer la liste des fichiers
 def list_files(self):
     list_f = list(self.directory.path.glob('*.md'))
-    file_obj = file.File(list_f[0])
-    file_content = get_file_content(list_f[0])
-    file_dict = dict_file(file_obj, file_content)
-    file_content = turn_to_html(file_dict['text'])
-    generate_html_file(list_f, file_content)
-    # faire une boucle avec la liste des fichiers
-    #for f in list_f:
-    #    print(f)
+    nav_items = []
+    dir = file.Directory('docs/')
+    
+    for f in list_f:
+        file_obj = file.File(f)
+        file_content = get_file_content(file_obj)
+        file_dict = file_obj.parse_body(file_content)
+        nav_item = tuple((file_obj.full_path.stem, file_dict['title']))
+        nav_items.append(nav_item)
+        file_content = turn_to_html(file_dict['text'])
+        page_content = make_page(nav_items, file_dict, file_content)
+        file_html = dir.path / "{}.{}".format(file_obj.full_path.stem,'html')
+        file_html.write_text(page_content)
+    
 
-# récupérer le contenu d'un fichier
 def get_file_content(file_selected):
-    return file.File(file_selected).full_path.read_text()
-
-def dict_file(file_obj, file_content):
-    file_d = file_obj.parse_body(file_content)
-    file_d["name"]= file_obj.full_path.stem
-    return file_d
+    return file_selected.full_path.read_text()
 
 def turn_to_html(text):
     return markdown.markdown(text)
 
-def generate_html_file(files, file_content):
+def make_page(files, file_dict, file_content):
     file_loader = FileSystemLoader('templates')
     env = Environment(loader=file_loader)
-    template = env.getgst_template('page.html')
-    output = template.render(files=files, content=file_content)
-    print(output)
+    template = env.get_template('page.html')
+    output = template.render(files=files, file_dict=file_dict, content=file_content)
+    return output
 
 
 # corriger navigation

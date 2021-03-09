@@ -5,7 +5,6 @@ from tkinter import *
 window=Tk()
 
 directory = file.Directory('content/')
-output = file.Directory('docs/')
 extension = '.md'
 screen.Screen(window, directory, extension)
 
