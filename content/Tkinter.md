@@ -1,7 +1,7 @@
 ---
 title: Créer une application avec Tkinter
 status: publish
-date: 01-03-2021
+date: 04-03-2021
 ---
 ## Description
 
@@ -14,6 +14,8 @@ Elle est intégrée de base à Python3 (pas besoin d'installation, de faire `pip
 - [Tutoriel](https://realpython.com/python-gui-tkinter/) Les bases qui permettent de construire une première application simple (un éditeur de texte pour créer des fichiers txt en l'occurrence). Détaille de manière claire la partie graphique.
 
 - [Tutoriel](https://tkdocs.com/index.html) va plus loin dans les explications, en donnant du contexte. Tutoriel multi-langage de programmation.
+
+- [Exemple MVC](https://sukhbinder.wordpress.com/2014/12/25/an-example-of-model-view-controller-design-pattern-with-tkinter-python/)exemple d'une application Tkinter construite avec l'architecture MVC
 
 - [Lien vers pyinstaller](https://www.pyinstaller.org/) afin de générer un fichier exécutable (.exe sur windows)
 

@@ -25,4 +25,16 @@ class File:
     # store text in body
     self.body['text'] = self.fm_glob[-1].strip()
     return self.body
+  
+  def normalize_filename(self, name, exts):
+    normalized_name = re.sub("\s", "-", name.strip())
+    file_name = "{}{}".format(normalized_name, exts)
+    return file_name
+
+  def save_file(self, directory, name, extension, content):
+    file_name = File.normalize_filename(self, name, extension)
+    file_name = directory.path / file_name
+    file_name.write_text(content)
+    
+
     
