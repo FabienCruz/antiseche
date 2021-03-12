@@ -7,13 +7,16 @@ def list_files(self):
     list_f = list(self.directory.path.glob('*.md'))
     nav_items = []
     dir = file.Directory('docs/')
-    
+
+    for f in list_f:
+        file_obj = file.File(f)  
+        nav_item = tuple((file_obj.full_path.stem, file_dict['title']))
+        nav_items.append(nav_item)
+
     for f in list_f:
         file_obj = file.File(f)
         file_content = get_file_content(file_obj)
         file_dict = file_obj.parse_body(file_content)
-        nav_item = tuple((file_obj.full_path.stem, file_dict['title']))
-        nav_items.append(nav_item)
         file_content = turn_to_html(file_dict['text'])
         page_content = make_page(nav_items, file_dict, file_content)
         file_html = dir.path / "{}.{}".format(file_obj.full_path.stem,'html')
