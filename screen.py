@@ -133,4 +133,4 @@ class Screen:
     # gestion des fichiers html
 
     def publish(self):
-        sitegenerator.list_files(self)
+        sitegenerator.generate(self)
