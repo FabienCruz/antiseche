@@ -100,15 +100,9 @@ class Screen:
         self.publish_value.set(value=body['status'])
         self.txt.insert('1.0', body['text'])
 
-<<<<<<< HEAD
     def new(self):
         if self.clean_it(): self.erase_screen()
         
-=======
-    def erase(self):
-        if self.is_screen_empty(): self.erase_screen()
-
->>>>>>> 0d992ed3bb59bc113ec36ca4f54d2c1e1a57990d
     def open(self):
         if self.is_screen_empty():
             self.erase_screen()
@@ -121,7 +115,6 @@ class Screen:
         if service.alert("le fichier {} va être supprimé".format(file_selected.full_path.stem)):
             file_selected.full_path.unlink()
             self.update_list()
-<<<<<<< HEAD
             self.erase_screen()
     
     def new_file(self, dir, exts):
@@ -135,12 +128,10 @@ class Screen:
         new_f = file.File(new_f)
         new_f.parse_body(new_f.full_path.read_text())
         return new_f
-=======
 
     def insert_frontmatter(self):
         front_matter = "---\ntitle: {}\nstatus: {}\ndate: {}\n---\n".format(self.title_text.get(), self.publish_value.get(), service.today())
         self.txt.insert('1.0', front_matter)
->>>>>>> 0d992ed3bb59bc113ec36ca4f54d2c1e1a57990d
 
     def save(self):
         name = self.file_name.get()
