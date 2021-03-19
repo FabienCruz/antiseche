@@ -101,7 +101,7 @@ class Screen:
         self.txt.insert('1.0', body['text'])
 
     def new(self):
-        if self.clean_it(): self.erase_screen()
+        if self.is_screen_empty(): self.erase_screen()
         
     def open(self):
         if self.is_screen_empty():
@@ -116,7 +116,15 @@ class Screen:
             file_selected.full_path.unlink()
             self.update_list()
             self.erase_screen()
-    
+
+    def normalize_filename(self, exts):
+        if self.file_name == '':
+            service.info("Le fichier n'a pas de nom")
+        else:
+            f_name = re.sub("\s", "-", self.file_name.get().strip())
+            f_name = "{}{}".format(f_name, exts)
+            return f_name
+
     def new_file(self, dir, exts):
         n_file = self.normalize_filename(exts)
         return self.directory.path / n_file
