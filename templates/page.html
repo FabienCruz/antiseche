@@ -9,10 +9,13 @@
         <link rel="stylesheet" href="antiseche.css">
     </head>
     <body>
-        <nav></nav>
+
+        {% include 'navigation.html' %}
         
         <main>
-            {{ content }}
+            <h1>{{ content.title }}</h1>
+            <p>{{ content.date }}</p>
+            {{ content.text }}
         </main>
         
         <script src="" async defer></script>

@@ -1,10 +1,9 @@
 from tkinter import *
 from tkinter import font, ttk
-from jinja2 import Environment, FileSystemLoader
-import service, file, markdown
+import service, file, sitegenerator
 
 class Screen:
-    def __init__(self, window, directory, extension, files):
+    def __init__(self, window, directory, extension):
         
         self.directory = directory
         self.extension = extension
@@ -27,7 +26,7 @@ class Screen:
         listframe = ttk.Frame(window, padding=(16, 4, 4, 4))
         listframe.grid(column=0, row=1, sticky=(N, S, W, E))
 
-        self.list_titles = files
+        self.list_titles = self.directory.list_files(self.extension)
         self.list_choices = StringVar(value=self.list_titles)
         self.list_doc = Listbox(listframe, height=6, width=30, relief=FLAT, listvariable=self.list_choices)
         self.list_doc.grid(row=0, column=0, columnspan=2, sticky=(W,E))
@@ -86,20 +85,7 @@ class Screen:
         self.list_titles = self.directory.list_files(self.extension)
         self.list_choices.set(self.directory.list_files(self.extension))
 
-    def insert_frontmatter(self):
-        date = service.today()
-        front_matter = "---\ntitle: {}\nstatus: {}\ndate: {}\n---\n".format(self.title_text.get(), self.publish_value.get(), date)
-        self.txt.insert('1.0', front_matter)
-
-    def normalize_filename(self, exts):
-        if self.file_name == '':
-            service.info("Le fichier n'a pas de nom")
-        else:
-            f_name = re.sub("\s", "-", self.file_name.get().strip())
-            f_name = "{}{}".format(f_name, exts)
-            return f_name
-
-    def clean_it(self):
+    def is_screen_empty(self):
         return self.txt.compare("end-1c", "==", "1.0") or service.alert("Le contenu en cours va être effacé")
 
     def erase_screen(self):
@@ -114,11 +100,17 @@ class Screen:
         self.publish_value.set(value=body['status'])
         self.txt.insert('1.0', body['text'])
 
+<<<<<<< HEAD
     def new(self):
         if self.clean_it(): self.erase_screen()
         
+=======
+    def erase(self):
+        if self.is_screen_empty(): self.erase_screen()
+
+>>>>>>> 0d992ed3bb59bc113ec36ca4f54d2c1e1a57990d
     def open(self):
-        if self.clean_it():
+        if self.is_screen_empty():
             self.erase_screen()
             file_selected = self.selected()
             file_selected.parse_body(file_selected.full_path.read_text())
@@ -129,6 +121,7 @@ class Screen:
         if service.alert("le fichier {} va être supprimé".format(file_selected.full_path.stem)):
             file_selected.full_path.unlink()
             self.update_list()
+<<<<<<< HEAD
             self.erase_screen()
     
     def new_file(self, dir, exts):
@@ -142,33 +135,24 @@ class Screen:
         new_f = file.File(new_f)
         new_f.parse_body(new_f.full_path.read_text())
         return new_f
+=======
+
+    def insert_frontmatter(self):
+        front_matter = "---\ntitle: {}\nstatus: {}\ndate: {}\n---\n".format(self.title_text.get(), self.publish_value.get(), service.today())
+        self.txt.insert('1.0', front_matter)
+>>>>>>> 0d992ed3bb59bc113ec36ca4f54d2c1e1a57990d
 
     def save(self):
-        if self.file_name.get() == '':
+        name = self.file_name.get()
+        if name == '':
             return service.info("Le fichier n'a pas de nom")
         else:
-            new_f = self.create_file()
+            self.insert_frontmatter()
+            content = self.txt.get('1.0', 'end')
+            file.File.save_file(self, self.directory, name, self.extension, content)
             self.update_list()
-            self.erase_screen()
-            self.display(new_f.full_path.stem, new_f.body)
-
-    def html_content(self):
-        new_file = self.create_file()
-        return markdown.markdown(new_file.body['text'])
+    
+    # gestion des fichiers html
 
     def publish(self):
-        if self.publish_value.get() == 'draft':
-            return service.info("Le fichier est un brouillon (case à cocher)")
-        else:
-            content = self.html_content()
-            file_loader = FileSystemLoader('templates')
-            env = Environment(loader=file_loader)
-            template = env.get_template('page.html')
-            output = template.render(content=content)
-            self.html_file(output)
-
-    def html_file(self, content):
-        dir = file.Directory('docs/')
-        n_file = self.normalize_filename('.html')
-        nw_file = dir.path / n_file
-        nw_file.write_text(content)
+        sitegenerator.generate(self)
