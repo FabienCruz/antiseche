@@ -61,7 +61,7 @@ class Screen:
 
         ttk.Button(buttonframe,text='ouvrir', command=self.open, width=12).grid(row=3, column=0)
         ttk.Button(buttonframe,text='supprimer', command=self.delete, width=12).grid(row=3, column=1)
-        ttk.Button(buttonframe,text='nettoyer', command=self.erase, width=12).grid(row=3, column=2)
+        ttk.Button(buttonframe,text='nouveau', command=self.new, width=12).grid(row=3, column=2)
         ttk.Button(buttonframe,text='publier', command=self.publish, width=12).grid(row=3, column=3, sticky=(W))
         ttk.Button(buttonframe,text='enregistrer', command=self.save, width=12).grid(row=3, column=4, sticky=(W))
 
@@ -114,7 +114,7 @@ class Screen:
         self.publish_value.set(value=body['status'])
         self.txt.insert('1.0', body['text'])
 
-    def erase(self):
+    def new(self):
         if self.clean_it(): self.erase_screen()
         
     def open(self):
@@ -130,12 +130,7 @@ class Screen:
             file_selected.full_path.unlink()
             self.update_list()
             self.erase_screen()
-
-    def update_screen(self):
-        self.update_list()
-        self.erase_screen()
-        self.display(self.full_path.stem, self.body)
-
+    
     def new_file(self, dir, exts):
         n_file = self.normalize_filename(exts)
         return self.directory.path / n_file
