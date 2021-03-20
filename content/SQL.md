@@ -3,6 +3,7 @@ title: SQL révisions
 status: publish
 date: 19-03-2021
 ---
+
 ## les commandes SQL de base
 
 ### source
@@ -57,3 +58,11 @@ voir le tutoriel postgreSQL pour les jointures.
 ### cours sur les bases de données relationnelles
 
 [cours d'Udacity](https://www.udacity.com/course/intro-to-relational-databases--ud197) Connaissances de bases requises en Python. Durée de 4 semaines. Gratuit.
+
+### bac à sable pour s'entraîner
+
+[sql fiddle](http://sqlfiddle.com/) voir la partie 'View Execution Plan' pour trouver les zones d'amélioration d'une requête.
+
+### pour aller plus loin
+
+[use the index, luke](https://use-the-index-luke.com/) site pour apprendre à optimiser les requêtes SQL. Voir aussi l'utilisation des index sur le tutoriel postgreSQL.
