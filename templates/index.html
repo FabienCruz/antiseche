@@ -8,19 +8,17 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="static/antiseche.css">
     </head>
     <body>
         
-        <!-- ajouter une image en fond (<span>Photo by <a href="https://unsplash.com/@sigmund?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Sigmund</a> on <a href="https://unsplash.com/s/photos/pen-and-paper?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>)-->
-        <!-- ajouter texte de ReadMe -->
+        {% include 'navigation.html' %}
 
-        <ul>
-            {% for file in files %}
-                <ul><a href=" {{ file.name }} "> {{ file.title }} </a></ul>
-            {% endfor %}
-        </ul>
-        
+    <main>
+
+        {{ content|safe }}
+
+    </main>
         <script src="" async defer></script>
     </body>
 </html>

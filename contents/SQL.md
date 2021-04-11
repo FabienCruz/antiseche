@@ -1,14 +1,15 @@
 ---
 title: SQL révisions
 status: publish
-date: 19-03-2021
+date: 20-03-2021
 ---
-
 ## les commandes SQL de base
 
-### source
+### tutoriels
 
 [le tutoriel de postgreSQL](https://www.postgresqltutorial.com/) Toutes les commandes expliquées.
+
+[le tutoriel de w3schools](https://www.w3schools.com/sql/default.asp) idem avec des exercices.
 
 ### pour manipuler des données
 
@@ -53,7 +54,7 @@ date: 19-03-2021
 	RENAME COLUMN column_name 
 	TO new_column_name;
 
-voir le tutoriel postgreSQL pour les jointures.
+voir les tutoriels.
 	
 ### cours sur les bases de données relationnelles
 
