@@ -8,6 +8,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="static/images/Favicon.ico">
         <link rel="stylesheet" href="static/antiseche.css">
     </head>
     <body>
@@ -15,7 +16,8 @@
         {% include 'navigation.html' %}
 
     <main>
-
+        <h1>{{ title }}</h1>
+        <p>dernière modification: {{ date }}</p>
         {{ content|safe }}
 
     </main>

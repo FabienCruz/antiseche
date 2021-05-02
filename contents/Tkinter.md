@@ -39,7 +39,7 @@ L'application peut être liée à une base de données ou une API. Il est possib
 
 `ttk` est la version utilisée depuis Python 3.1 avec des widgets associés à des thèmes *graphiques*.
 
-![exemple d'interface avec Tkinter](../images/Tkinter.png)
+![exemple d'interface avec Tkinter](static/images/Tkinter.png)
 
 # Avis personnel
 

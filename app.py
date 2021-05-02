@@ -13,11 +13,13 @@ def index():
 @app.route('/<file_selected>')
 def open_file(file_selected):
     file_selected = directory / file_selected
-    content = markdown.markdown(file_selected.read_text())
-    return render_template('index.html', files=files, content=content)
+    file_text = parse_text(file_selected.read_text())
+    file_title = file_text['title']
+    file_date = file_text['date']
+    content = markdown.markdown(file_text['content'])
+    return render_template('index.html', files=files, title=file_title, date=file_date, content=content)
 
-'''
-def parse_body(content):
+def parse_text(content):
     body = {}
     # parse front-matter (between "---") and store key, value in body
     fm_glob = re.split("-{3}", content)
@@ -28,4 +30,3 @@ def parse_body(content):
     # store text in body
     body['content'] = fm_glob[-1].strip()
     return body
-'''
