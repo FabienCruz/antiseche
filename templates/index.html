@@ -17,7 +17,9 @@
 
     <main>
         <h1>{{ title }}</h1>
-        <p>dernière modification: {{ date }}</p>
+        {% if date is defined %}
+            <p>dernière modification: {{ date }}</p>
+        {% endif %}
         {{ content|safe }}
 
     </main>
