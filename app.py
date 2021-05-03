@@ -30,3 +30,24 @@ def parse_text(content):
     # store text in body
     body['content'] = fm_glob[-1].strip()
     return body
+'''
+--------------------------
+ TO DO
+--------------------------
+
+--create a mini-cms with flask WTF
+
+create file
+pick-up file in a list
+delete file
+read file 
+modify file
+differenciate draft and publish
+show only publish
+
+--create access and authorization
+
+--deploy
+
+--create another version with a postgresql database
+'''
