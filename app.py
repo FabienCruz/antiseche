@@ -1,10 +1,28 @@
 import pathlib, glob, re, markdown, markupsafe
 from flask import Flask, render_template, redirect, url_for
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
 
 app = Flask(__name__)
+app.config['SECRET KEY'] = 'secret'
 
 directory = pathlib.Path.cwd() / 'contents/'
 files = list(directory.glob('*.md'))
+
+#--------------------------
+# Form
+#--------------------------
+
+class CmsForm(FlaskForm):
+    title = StringField
+    filename = StringField
+    date = DateTimeField
+    draft = BooleanField
+    text = TextAreaField
+
+#--------------------------
+# Routes
+#--------------------------
 
 @app.route('/')
 def index():
@@ -30,6 +48,14 @@ def parse_text(content):
     # store text in body
     body['content'] = fm_glob[-1].strip()
     return body
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 '''
 --------------------------
  TO DO
