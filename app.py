@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
 
 app = Flask(__name__)
-app.config['SECRET KEY'] = 'secret'
+app.config['SECRET_KEY'] = 'secret'
 
 directory = pathlib.Path.cwd() / 'contents/'
 files = list(directory.glob('*.md'))
@@ -12,13 +12,13 @@ files = list(directory.glob('*.md'))
 #--------------------------
 # Form
 #--------------------------
-
-class CmsForm(FlaskForm):
-    title = StringField
-    filename = StringField
-    date = DateTimeField
-    draft = BooleanField
-    text = TextAreaField
+# https://www.youtube.com/watch?v=vzaXBm-ZVOQ
+class DocForm(FlaskForm):
+    doc_title = StringField('doc_title')
+    doc_file = StringField('doc_file')
+    doc_date = DateTimeField('doc_date')
+    doc_draft = BooleanField('doc_draft')
+    doc_text = TextAreaField('doc_text')
 
 #--------------------------
 # Routes
@@ -51,7 +51,9 @@ def parse_text(content):
 
 @app.route('/form')
 def form():
-    return render_template('form.html')
+    form=DocForm()
+    return render_template('form.html', form=form)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
