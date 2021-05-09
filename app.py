@@ -13,6 +13,11 @@ files = list(directory.glob('*.md'))
 # Form
 #--------------------------
 # https://www.youtube.com/watch?v=vzaXBm-ZVOQ
+# https://www.youtube.com/watch?v=jR2aFKuaOBs
+# https://www.youtube.com/watch?v=VrH0eH4nE-c
+# https://www.youtube.com/watch?v=J9O0v-iM0TE
+# https://www.youtube.com/watch?v=Frb0NXe1IHw
+
 class DocForm(FlaskForm):
     doc_title = StringField('doc_title')
     doc_file = StringField('doc_file')
@@ -49,9 +54,15 @@ def parse_text(content):
     body['content'] = fm_glob[-1].strip()
     return body
 
-@app.route('/form')
+@app.route('/form', methods=['GET', 'POST'])
 def form():
-    form=DocForm()
+    form = DocForm()
+
+    if form.validate_on_submit():
+        test = form.doc_text.data
+        print(test)
+    return 'the text is {}. <p>'.format(form.doc_text.data)
+    
     return render_template('form.html', form=form)
 
 
