@@ -19,11 +19,11 @@ files = list(directory.glob('*.md'))
 # https://www.youtube.com/watch?v=Frb0NXe1IHw
 
 class DocForm(FlaskForm):
-    doc_title = StringField('doc_title')
-    doc_file = StringField('doc_file')
-    doc_date = DateTimeField('doc_date')
-    doc_draft = BooleanField('doc_draft')
-    doc_text = TextAreaField('doc_text')
+    doc_title = StringField('title')
+    doc_file = StringField('file')
+    doc_date = DateTimeField('date')
+    doc_draft = BooleanField('draft')
+    doc_text = TextAreaField('text')
 
 #--------------------------
 # Routes
@@ -40,7 +40,7 @@ def open_file(file_selected):
     file_title = file_text['title']
     file_date = file_text['date']
     content = markdown.markdown(file_text['content'])
-    return render_template('index.html', files=files, title=file_title, date=file_date, content=content)
+    return render_template('sheet.html', files=files, title=file_title, date=file_date, content=content)
 
 def parse_text(content):
     body = {}
@@ -61,7 +61,7 @@ def form():
     if form.validate_on_submit():
         test = form.doc_text.data
         print(test)
-    return 'the text is {}. <p>'.format(form.doc_text.data)
+    return render_template('form.html', form=form)
     
     return render_template('form.html', form=form)
 

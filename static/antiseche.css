@@ -17,6 +17,19 @@ h1 {
     color: steelblue;
 }
 
+a:link, a:visited {
+    color: darkblue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------
+Navigation
+-----------*/
+
 nav {
     position: fixed;
     overflow: scroll;
@@ -42,10 +55,36 @@ nav ul {
     padding: 0em 1.5em;
 }
 
-nav a:link {
+nav a:link, a:visited {
     color: white;
+    text-decoration: none;
 }
 
-nav a:visited {
+nav a:hover {
     color: darkblue;
+    text-decoration: underline;
+}
+
+nav .btn {
+    color: white;
+    margin: 1em 1.5em;
+    padding: 0.5em 1.5em;
+    background-color: darkblue;
+    border-radius: 8px;
+}
+
+nav .btn:hover {
+    background-color: white;
+    border: solid;
+    border-color: darkblue;
+}
+
+/* -----------
+Form
+-------------*/
+
+form {
+    display: grid;
+    grid-gap: 0.5em;
+    margin: 2em;
 }

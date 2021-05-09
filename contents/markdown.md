@@ -23,4 +23,4 @@ date: 04-03-2021
 
 ## A lire
 
-[How to Render Markdown Syntax as HTML Using Python](https://coderbook.com/@marcus/how-to-render-markdown-syntax-as-html-using-python/)
+- [How to Render Markdown Syntax as HTML Using Python](https://coderbook.com/@marcus/how-to-render-markdown-syntax-as-html-using-python/)

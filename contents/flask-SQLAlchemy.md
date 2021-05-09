@@ -6,17 +6,17 @@ date: 21-03-2021
 
 ## Tutoriels et documentation
 
-[Real Python - Part1](https://realpython.com/flask-connexion-rest-api/)
+- [Real Python - Part1](https://realpython.com/flask-connexion-rest-api/)
 
-[Real Python - Part2](https://realpython.com/flask-connexion-rest-api-part-2/)
+- [Real Python - Part2](https://realpython.com/flask-connexion-rest-api-part-2/)
 
-[Real Python - Part3](https://realpython.com/flask-connexion-rest-api-part-3/)
+- [Real Python - Part3](https://realpython.com/flask-connexion-rest-api-part-3/)
 
-[Real Python - Part4](https://realpython.com/flask-connexion-rest-api-part-4/)
+- [Real Python - Part4](https://realpython.com/flask-connexion-rest-api-part-4/)
 
-[openclassroom - concevez un site avec flask](https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask)
+- [openclassroom - concevez un site avec flask](https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask)
 
-[site officiel flask-sqlachemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+- [site officiel flask-sqlachemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
 
 ## Charger les librairies
 

@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="static/images/Favicon.ico">
-        <link rel="stylesheet" href="static/antiseche.css">
-    </head>
-    <body>
-        <h1>Form</h1>
-        <form method="POST" action="{{ url_for('form') }}">
-            {{ form.csrf_token }}
-            {{ form.doc_text }}
-            {{ form.doc_title }}
-            {{ form.doc_title.label }}
-            {{ form.doc_date }}
-            {{ form.doc_date.label }}
-            {{ form.doc_draft }}
-            {{ form.doc_draft.label }}
-            {{ form.doc_file }}
-            {{ form.doc_file.label }}
-            <input type="submit" value="Submit">
-        </form>
-        <script src="" async defer></script>
-    </body>
-</html>
+
+{% extends "index.html" %}
+{% block page %}
+<form method="POST" action="{{ url_for('form') }}">
+    {{ form.csrf_token }}
+    {{ form.doc_title }}
+    {{ form.doc_title.label }}
+    {{ form.doc_text(rows="10", cols="150") }}
+    {{ form.doc_date }}
+    {{ form.doc_date.label }}
+    {{ form.doc_draft }}
+    {{ form.doc_draft.label }}
+    {{ form.doc_file }}
+    {{ form.doc_file.label }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
+

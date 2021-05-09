@@ -12,16 +12,12 @@
         <link rel="stylesheet" href="static/antiseche.css">
     </head>
     <body>
-        
-        {% include 'navigation.html' %}
-
+        <nav>
+            {% include 'navigation.html' %}
+        </nav>
     <main>
-        <h1>{{ title }}</h1>
-        {% if date is defined %}
-            <p>dernière modification: {{ date }}</p>
-        {% endif %}
-        {{ content|safe }}
-
+        {% block page %}
+        {% endblock %}
     </main>
         <script src="" async defer></script>
     </body>
