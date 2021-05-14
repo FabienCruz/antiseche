@@ -1,7 +1,9 @@
-import pathlib, glob, re, markdown, markupsafe
-from flask import Flask, render_template, redirect, url_for
+import pathlib, glob, re, markdown
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
+from wtforms import validators
+from wtforms.validators import InputRequired, NoneOf, Length, Regexp
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
@@ -32,11 +34,11 @@ class Document():
         return self.body
 
 class Form(FlaskForm):
-    title = StringField('title')
-    file = StringField('file')
+    title = StringField('titre')
+    file = StringField('fichier', validators=[InputRequired(), Length(min=3, max=20, message='doit avoir entre 3 et 20 caractères'), Regexp(r'^[\w]+$', message="uniquement alphanumérique et sans espace")])
     date = DateTimeField('date')
-    draft = BooleanField('draft')
-    text = TextAreaField('text')
+    draft = BooleanField('brouillon', default="checked")
+    text = TextAreaField('texte')
 
 #--------------------------
 # Routes

@@ -11,6 +11,11 @@
     {{ form.draft }}
     {{ form.draft.label }}
     {{ form.file }}
+    <ul>
+        {% for error in form.file.errors %}
+        <li style="color: red;">{{ error }}</li>
+        {% endfor %}
+    </ul>
     {{ form.file.label }}
     <input type="submit" value="Créer">
 </form>

@@ -9,11 +9,9 @@ date: 14-05-2021
 
 2 tutoriels de 10 min. chacun :
 
-- [intro to flask_wtf](https://www.youtube.com/watch?v=vzaXBm-ZVOQ)
-- [using validators](https://www.youtube.com/watch?v=jR2aFKuaOBs)
-# https://www.youtube.com/watch?v=VrH0eH4nE-c
-# https://www.youtube.com/watch?v=J9O0v-iM0TE
-# https://www.youtube.com/watch?v=Frb0NXe1IHw
+- [introduction à flask_wtf](https://www.youtube.com/watch?v=vzaXBm-ZVOQ)
+- [valider le contenu des champs](https://www.youtube.com/watch?v=jR2aFKuaOBs)
+- [faire des macro pour répéter un schéma étiquette / champ / erreur](https://www.youtube.com/watch?v=J9O0v-iM0TE)
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField

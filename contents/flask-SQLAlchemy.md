@@ -18,7 +18,7 @@ date: 21-03-2021
 
 - [site officiel flask-sqlachemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
 
-- [site pour apprendre flask](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+- [site de Miguel Grinderg pour apprendre flask](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
 ## Charger les librairies
 
