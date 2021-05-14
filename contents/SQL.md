@@ -1,6 +1,6 @@
 ---
 title: SQL révisions
-status: publish
+draft: False
 date: 20-03-2021
 ---
 ## les commandes SQL de base

@@ -3,16 +3,16 @@
 {% block page %}
 <form method="POST" action="{{ url_for('form') }}">
     {{ form.csrf_token }}
-    {{ form.doc_title }}
-    {{ form.doc_title.label }}
-    {{ form.doc_text(rows="10", cols="150") }}
-    {{ form.doc_date }}
-    {{ form.doc_date.label }}
-    {{ form.doc_draft }}
-    {{ form.doc_draft.label }}
-    {{ form.doc_file }}
-    {{ form.doc_file.label }}
-    <input type="submit" value="Submit">
+    {{ form.title }}
+    {{ form.title.label }}
+    {{ form.text(rows="10", cols="150") }}
+    {{ form.date }}
+    {{ form.date.label }}
+    {{ form.draft }}
+    {{ form.draft.label }}
+    {{ form.file }}
+    {{ form.file.label }}
+    <input type="submit" value="Créer">
 </form>
 {% endblock %}
 

@@ -1,6 +1,6 @@
 ---
 title: Utiliser Jinja2 comme moteur de template
-status: publish
+draft: False
 date: 03-03-2021
 ---
 ## Sites utiles

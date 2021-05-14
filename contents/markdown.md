@@ -1,6 +1,6 @@
 ---
 title: Transformer un fichier markdown en html
-status: publish
+draft: False
 date: 04-03-2021
 ---
 ## Bibliothèques
@@ -20,6 +20,8 @@ date: 04-03-2021
 - [le site de l'inventeur du markdown](https://daringfireball.net/projects/markdown/syntax) John Gruber
 
 - [aperçu des différentes versions de markdown et leurs fonctionnalités](https://css-tricks.com/choosing-right-markdown-parser/) sur css tricks
+
+- caractères spéciaux: le backtick ` pour le code s'obtient en faisant < puis espace
 
 ## A lire
 

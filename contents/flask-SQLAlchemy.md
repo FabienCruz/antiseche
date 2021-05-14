@@ -1,6 +1,6 @@
 ---
 title: Créer un site avec Flask et SQLAlchemy
-status: draft
+draft: True
 date: 21-03-2021
 ---
 
@@ -17,6 +17,8 @@ date: 21-03-2021
 - [openclassroom - concevez un site avec flask](https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask)
 
 - [site officiel flask-sqlachemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+
+- [site pour apprendre flask](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
 ## Charger les librairies
 

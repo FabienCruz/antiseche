@@ -1,8 +1,8 @@
-
-<h2>Antisèche</h2>
-    <a class="btn" href="/form">ajouter</a>
-    <li>
-        {% for file in files %}
-            <ul><a href="/{{ file.name }}">{{ file.stem }}</a></ul>
-        {% endfor %}
-    </li>
+<div style="display: flex;">
+<h2><a href="/">Antisèche</a></h2><a class="btn" href="/form"> + </a>
+</div>
+<li>
+    {% for file in files %}
+        <ul><a href="/{{ file.name }}">{{ file.stem }}</a></ul>
+    {% endfor %}
+</li>

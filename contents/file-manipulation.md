@@ -1,6 +1,6 @@
 ---
 title: Manipuler des fichiers et des répertoires
-status: publish
+draft: False
 date: 12-12-2020
 ---
 ## Tutoriels

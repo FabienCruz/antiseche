@@ -1,6 +1,6 @@
 ---
 title: Utiliser Git
-status: publish
+draft: False
 date: 03-03-2021
 ---
 ## Tutoriel

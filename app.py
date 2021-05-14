@@ -10,20 +10,33 @@ directory = pathlib.Path.cwd() / 'contents/'
 files = list(directory.glob('*.md'))
 
 #--------------------------
-# Form
+# Class
 #--------------------------
-# https://www.youtube.com/watch?v=vzaXBm-ZVOQ
-# https://www.youtube.com/watch?v=jR2aFKuaOBs
-# https://www.youtube.com/watch?v=VrH0eH4nE-c
-# https://www.youtube.com/watch?v=J9O0v-iM0TE
-# https://www.youtube.com/watch?v=Frb0NXe1IHw
 
-class DocForm(FlaskForm):
-    doc_title = StringField('title')
-    doc_file = StringField('file')
-    doc_date = DateTimeField('date')
-    doc_draft = BooleanField('draft')
-    doc_text = TextAreaField('text')
+class Document():
+    def __init__(self, name):
+        self.name = name
+        self.path = pathlib.Path.cwd() / 'contents/' / name
+        self.body = {}
+
+    def parse(self):
+        document = self.path.read_text()
+        # parse front-matter (between "---") and store key, value in body
+        fm_glob = re.split("-{3}", document)
+        fm_dtl = re.findall(".*:.*", fm_glob[1])
+        for item in fm_dtl:
+            item_dtl = re.split(":", item)
+            self.body[item_dtl[0]] = item_dtl[1].strip()
+        # store text in body
+        self.body['content'] = fm_glob[-1].strip()
+        return self.body
+
+class Form(FlaskForm):
+    title = StringField('title')
+    file = StringField('file')
+    date = DateTimeField('date')
+    draft = BooleanField('draft')
+    text = TextAreaField('text')
 
 #--------------------------
 # Routes
@@ -35,34 +48,17 @@ def index():
 
 @app.route('/<file_selected>')
 def open_file(file_selected):
-    file_selected = directory / file_selected
-    file_text = parse_text(file_selected.read_text())
-    file_title = file_text['title']
-    file_date = file_text['date']
-    content = markdown.markdown(file_text['content'])
-    return render_template('sheet.html', files=files, title=file_title, date=file_date, content=content)
-
-def parse_text(content):
-    body = {}
-    # parse front-matter (between "---") and store key, value in body
-    fm_glob = re.split("-{3}", content)
-    fm_dtl = re.findall(".*:.*", fm_glob[1])
-    for item in fm_dtl:
-        item_dtl = re.split(":", item)
-        body[item_dtl[0]] = item_dtl[1].strip()
-    # store text in body
-    body['content'] = fm_glob[-1].strip()
-    return body
+    document = Document(file_selected).parse()
+    content = markdown.markdown(document['content'])
+    return render_template('sheet.html', files=files, title=document['title'], date=document['date'], content=content)
 
 @app.route('/form', methods=['GET', 'POST'])
 def form():
-    form = DocForm()
+    form = Form()
 
     if form.validate_on_submit():
-        test = form.doc_text.data
+        test = form.text.data
         print(test)
-    return render_template('form.html', form=form)
-    
     return render_template('form.html', form=form)
 
 
@@ -76,17 +72,17 @@ if __name__ == '__main__':
 
 --create a mini-cms with flask WTF
 
-create file
 pick-up file in a list
-delete file
 read file 
-modify file
+create file
 differenciate draft and publish
 show only publish
+modify file
+delete file
 
 --create access and authorization
 
 --deploy
 
---create another version with a postgresql database
+--create another version with a postgresql database / mongodb
 '''
