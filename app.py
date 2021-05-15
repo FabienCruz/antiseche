@@ -1,5 +1,5 @@
-import pathlib, glob, re, markdown
-from flask import Flask, render_template
+import pathlib, glob, re, markdown, datetime
+from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
 from wtforms import validators
@@ -20,6 +20,17 @@ class Document():
         self.name = name
         self.path = pathlib.Path.cwd() / 'contents/' / name
         self.body = {}
+
+    def save_md(self):
+        document = """---\ntitle: {}
+        \ndraft: {}
+        \ndate: {}
+        \n---
+        \n{}""".format(self.body['title'], 
+        self.body['draft'], 
+        self.body['date'],
+        self.body['content'])
+        return self.path.write_text(document)
 
     def parse(self):
         document = self.path.read_text()
@@ -46,6 +57,7 @@ class Form(FlaskForm):
 
 @app.route('/')
 def index():
+    files = list(directory.glob('*.md'))
     return render_template('index.html', files=files)
 
 @app.route('/<file_selected>')
@@ -54,15 +66,22 @@ def open_file(file_selected):
     content = markdown.markdown(document['content'])
     return render_template('sheet.html', files=files, title=document['title'], date=document['date'], content=content)
 
-@app.route('/form', methods=['GET', 'POST'])
-def form():
+@app.route('/new', methods=['GET'])
+def new():
     form = Form()
-
-    if form.validate_on_submit():
-        test = form.text.data
-        print(test)
     return render_template('form.html', form=form)
 
+@app.route('/new', methods=['POST'])
+def new_submission():
+    form = Form(meta={'csrf': False})
+    name = "{}.md".format(form.file.data)
+    new_document = Document(name)
+    new_document.body['title'] = form.title.data
+    new_document.body['draft'] = form.draft.data
+    new_document.body['date'] = datetime.datetime.now()
+    new_document.body['content'] = form.text.data
+    new_document.save_md()
+    return redirect(url_for('open_file', file_selected=name))
 
 if __name__ == '__main__':
     app.run(debug=True)

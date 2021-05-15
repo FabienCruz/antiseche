@@ -1,13 +1,11 @@
 
 {% extends "index.html" %}
 {% block page %}
-<form method="POST" action="{{ url_for('form') }}">
+<form method="POST" action="{{ url_for('new') }}">
     {{ form.csrf_token }}
     {{ form.title }}
     {{ form.title.label }}
     {{ form.text(rows="10", cols="150") }}
-    {{ form.date }}
-    {{ form.date.label }}
     {{ form.draft }}
     {{ form.draft.label }}
     {{ form.file }}

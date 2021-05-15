@@ -7,7 +7,7 @@ date: 12-12-2020
 
 - [Tutoriel sur pathlib](https://realpython.com/python-pathlib/) Utilisation de pathlib.
 
-- [Aide-mémoire sur pathlib](https://github.com/chris1610/pbpython/blob/master/extras/Pathlib-Cheatsheet.pdf) en une page les principales méthode de pathlib. Synthétique et visuel.
+- [Aide-mémoire sur pathlib](https://github.com/chris1610/pbpython/blob/master/extras/Pathlib-Cheatsheet.pdf) en une page les principales méthodes de pathlib. Synthétique et visuel.
 
 - [Tutoriel](https://realpython.com/working-with-files-in-python/) avec les principales actions de manipulation de fichier et de répertoire, plus classique avec les chaînes de caractères.
 
