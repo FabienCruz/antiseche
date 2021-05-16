@@ -4,44 +4,16 @@ draft: True
 date: 14-05-2021
 ---
 
+## Documentation officielle
+
+[page d'accueil](https://flask-wtf.readthedocs.io/en/stable/)
 
 ## Tutoriels:
 
-2 tutoriels de 10 min. chacun :
+3 tutoriels de 10 minutes chacun :
 
-- [introduction à flask_wtf](https://www.youtube.com/watch?v=vzaXBm-ZVOQ)
-- [valider le contenu des champs](https://www.youtube.com/watch?v=jR2aFKuaOBs)
-- [faire des macro pour répéter un schéma étiquette / champ / erreur](https://www.youtube.com/watch?v=J9O0v-iM0TE)
+[introduction à flask_wtf](https://www.youtube.com/watch?v=vzaXBm-ZVOQ)
 
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
+[valider le contenu des champs](https://www.youtube.com/watch?v=jR2aFKuaOBs)
 
-class Form(FlaskForm):
-    title = StringField('title')
-    file = StringField('file')
-    date = DateTimeField('date')
-    draft = BooleanField('draft')
-    text = TextAreaField('text')
-
-@app.route('/form', methods=['GET', 'POST'])
-def form():
-    form = Form()
-
-    if form.validate_on_submit():
-        test = form.text.data
-        print(test)
-    return render_template('form.html', form=form)
-
-<form method="POST" action="{{ url_for('form') }}">
-    {{ form.csrf_token }}
-    {{ form.title }}
-    {{ form.title.label }}
-    {{ form.text(rows="10", cols="150") }}
-    {{ form.date }}
-    {{ form.date.label }}
-    {{ form.draft }}
-    {{ form.draft.label }}
-    {{ form.file }}
-    {{ form.file.label }}
-    <input type="submit" value="Créer">
-</form>
+[faire des macro pour répéter un schéma étiquette / champ / erreur](https://www.youtube.com/watch?v=J9O0v-iM0TE)
