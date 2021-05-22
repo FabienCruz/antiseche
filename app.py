@@ -3,10 +3,21 @@ from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
 from wtforms.validators import InputRequired, Length, Regexp
+from pymongo import MongoClient
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
 
+#--------------------------
+# Database
+#--------------------------
+client = MongoClient()
+db = client.cheatsheet
+sheet = db.sheet
+
+#--------------------------
+# files management
+#--------------------------
 directory = pathlib.Path.cwd() / 'contents/'
 files = list(directory.glob('*.md'))
 
@@ -14,11 +25,14 @@ files = list(directory.glob('*.md'))
 # Class
 #--------------------------
 
-class Document():
+class Cheatsheet():
     def __init__(self, name):
         self.name = name
         self.path = pathlib.Path.cwd() / 'contents/' / name
         self.body = {}
+
+    def save_db(self):
+        sheet = db.sheet
 
     def save_md(self):
         document = """---\ntitle: {}
@@ -54,6 +68,9 @@ class Form(FlaskForm):
 # Routes
 #--------------------------
 
+for x in sheet.find({}, {'title': 1}):
+    print (x)
+
 @app.route('/')
 def index():
     files = list(directory.glob('*.md'))
@@ -61,7 +78,7 @@ def index():
 
 @app.route('/<file_selected>')
 def open_file(file_selected):
-    document = Document(file_selected).parse()
+    document = Cheatsheet(file_selected).parse()
     content = markdown.markdown(document['content'])
     return render_template('sheet.html', files=files, title=document['title'], date=document['date'], content=content)
 
@@ -74,7 +91,7 @@ def new():
 def new_submission():
     form = Form(meta={'csrf': False})
     name = "{}.md".format(form.file.data)
-    new_document = Document(name)
+    new_document = Cheatsheet(name)
     new_document.body['title'] = form.title.data
     new_document.body['draft'] = form.draft.data
     new_document.body['date'] = datetime.datetime.now()

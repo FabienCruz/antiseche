@@ -85,7 +85,7 @@ nav .btn {
 }
 
 nav .btn:hover {
-    margin: 42px 0 36px;
+    margin: 2vW 0;
     color: white;
     background-color: darkblue;
     transition: all ease-out 0.5s;

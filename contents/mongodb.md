@@ -17,7 +17,7 @@ En MongoDB, une **collection** regroupe des **documents** qui contient des paire
 
 ## Installer Mongodb sur Mac OS
 
-la documentation officielle pour l'installation est [ici] (https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#std-label-osx-prereq)
+la documentation officielle pour l'installation est [ici](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#std-label-osx-prereq)
 
 pour installer avec homebrew:
 
@@ -35,7 +35,7 @@ pour l'arrêter :
 
 ## Utiliser mongo shell
 
-[les opérations de bases de la documentation officielle] (https://docs.mongodb.com/manual/reference/mongo-shell/)
+[les opérations de bases de la documentation officielle](https://docs.mongodb.com/manual/reference/mongo-shell/)
 
 mongo shell utilise du code JavaScript plutôt que du SQL.
 
@@ -82,6 +82,13 @@ un seul:
 
 [documentation officielle](https://pymongo.readthedocs.io/en/stable/index.html)
 
+### Installer pymongo
+
+`pip3 install pymongo`
+
+Rappel pour voir tous les paquets installés:
+
+`pip3 freeze`
 
 ## Pour connecter Flask et MongoDB
 
