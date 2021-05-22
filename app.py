@@ -57,7 +57,7 @@ class Form(FlaskForm):
 @app.route('/')
 def index():
     files = list(directory.glob('*.md'))
-    return render_template('index.html', files=files)
+    return render_template('list.html', files=files)
 
 @app.route('/<file_selected>')
 def open_file(file_selected):
