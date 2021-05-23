@@ -2,7 +2,7 @@
 {% block page %}
 <li>
     {% for file in files %}
-        <ul><a href="/{{ file.name }}">{{ file.stem }}</a></ul>
+        <ul><a href="/{{ file._id }}">{{ file.title }}</a></ul>
     {% endfor %}
 </li>
 {% endblock %}

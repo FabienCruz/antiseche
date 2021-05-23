@@ -1,4 +1,5 @@
 import pathlib, glob, re, markdown, datetime
+from bson.objectid import ObjectId
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
@@ -13,7 +14,7 @@ app.config['SECRET_KEY'] = 'secret'
 #--------------------------
 client = MongoClient()
 db = client.cheatsheet
-sheet = db.sheet
+sheets = db.sheet
 
 #--------------------------
 # files management
@@ -68,19 +69,18 @@ class Form(FlaskForm):
 # Routes
 #--------------------------
 
-for x in sheet.find({}, {'title': 1}):
-    print (x)
-
 @app.route('/')
 def index():
-    files = list(directory.glob('*.md'))
+    files = []
+    for file in sheets.find({}, {'title': 1}):
+        files.append(file)
     return render_template('list.html', files=files)
 
-@app.route('/<file_selected>')
-def open_file(file_selected):
-    document = Cheatsheet(file_selected).parse()
-    content = markdown.markdown(document['content'])
-    return render_template('sheet.html', files=files, title=document['title'], date=document['date'], content=content)
+@app.route('/<id>')
+def open_file(id):
+    sheet = sheets.find_one({"_id": ObjectId(id)})
+    content = markdown.markdown(sheet['content'])
+    return render_template('sheet.html', title=sheet['title'], date=sheet['date'], content=content)
 
 @app.route('/new', methods=['GET'])
 def new():
