@@ -1,8 +1,12 @@
 {% extends "index.html" %}
 {% block page %}
-<li>
+    <table>
     {% for file in files %}
-        <ul><a href="/{{ file._id }}">{{ file.title }}</a></ul>
+        <tr>
+            <td><a href="/{{ file._id }}">{{ file.title }}</a></td>
+            <td><button style="background-color: lightgreen">modifier</button></td>
+            <td><button style="background-color: lightsalmon">supprimer</button></td>
+        </tr>
     {% endfor %}
-</li>
+    </table>
 {% endblock %}
