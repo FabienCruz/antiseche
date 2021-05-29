@@ -1,487 +1,110 @@
-/*
-----------------------------------------------------------
-
-"T'as pas la classe !" 
-a basic (s)css with just semantic html and without class
-
-based on tacit.css 
-https://yegor256.github.io/tacit/ 
-
-----------------------------------------------------------
-*/
+//--------------------------------------------------------------
+// settings
+//--------------------------------------------------------------
 
 
-// just change the settings
+// sizes
 
-$font: sans-serif;
-$color_text: rgba(0, 0, 0, 0.75);
-$color_page:whitesmoke;
-$color_1: darkblue;
-$color_2:steelblue;
-$color_1_inverted: white;
-$color_light: lightgrey;
 $container: 80%;
+$font-headings: sans-serif;
+$font-text: serif;
+$font-size: 1.1em; // 1em = 16px
 
 
-// ----------------------------------------------------------
 
-/* text */
+// colors
 
-input,textarea,select,button,option,body {
-    font:normal 400 normal 1.125rem/1.85625rem $font;
-}
+$color_1: darkblue;
+$color_1_contrast: white;
+$color_2: steelblue;
+$color_2_contrast: orange;
+$color_light_1: lightblue;
+$color_light_2: lightgrey;
 
-/* tables */
+$color_ink: rgba(0, 0, 0, 0.75);
+$color_page: whitesmoke;
 
-th {
-    font-weight:600
-}
-td,th {
-    border-bottom:0 solid $color_light;
-    padding:0.928125rem 1.125rem;
-    text-align:left;
-    vertical-align:top
-}
-thead th {
-    border-bottom-width:0.135rem;
-    padding-bottom:0.39375rem
-}
-table {
-    display:table;
-    width:100%
-}
-@media all and (max-width:1024px){
-    table{
-        display:none
-    }
-}
-@media all and (max-width:1024px){
-    table thead{
-        display:none
-    }
-}
-table tr{
-    border-bottom-width:0.135rem
-}
-table tr th{
-    border-bottom-width:0.135rem
-}
-table tr td,table tr th{
-    overflow:hidden;
-    padding:0.3375rem 0.225rem
-}
-@media all and (max-width:1024px){
-    table tr td,table tr th{
-        border:0;
-        display:inline-block
-    }
-}
-@media all and (max-width:1024px){
-    table tr{
-        display:inline-block;
-        margin:0.675rem 0
-    }
-}
-@media all and (max-width:1024px){
-    table{
-        display:inline-block
-    }
-}
 
-/* form */
+//--------------------------------------------------------------
+//  Utilities
+//--------------------------------------------------------------
 
-fieldset label,fieldset legend{
-    display:block
-}
-fieldset legend{
-    margin:1.125rem 0
-}
-input,textarea,select,button{
-    border-radius:3.6px;
-    display:inline-block;
-    padding:0.61875rem
-}
-input+label,input+input[type="checkbox"],
-input+input[type="radio"],
-textarea+label,textarea+input[type="checkbox"],
-textarea+input[type="radio"],
-select+label,select+input[type="checkbox"],
-select+input[type="radio"],
-button+label,button+input[type="checkbox"],
-button+input[type="radio"]{
-    page-break-before:always
-}
+//@import 'utils/mixins';
+//@import 'utils/variables';
 
-input,select,label{
-    margin-right:0.225rem
-}
-textarea{
-    min-height:5.625rem;
-    min-width:22.5rem
-}
-label{
-    display:inline-block;
-    margin-bottom:0.7875rem
-}
-label+*{
-    page-break-before:always
-}
-label>input{
-    margin-bottom:0
-}
-input[type="submit"],
-input[type="reset"],
-button{
-    background: $color_2;
-    color: $color_1;
-    cursor:pointer;
-    display:inline;
-    margin-bottom:1.125rem;
-    margin-right:0.45rem;
-    padding:0.4078125rem 1.4625rem;
-    text-align:center
-}
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-button:hover{
-    background: $color_2;
-    color: $color_1;
-}
-input[type="submit"][disabled],
-input[type="reset"][disabled],
-button[disabled]{
-    background:$color_1_inverted;
-    color: $color_1;
-    cursor:not-allowed
-}
-input[type="submit"],
-button[type="submit"]{
-    background:$color_1;
-    color:$color_1_inverted;
-}
-input[type="submit"]:hover,
-button[type="submit"]:hover{
-    background:$color_1_inverted;
-    color:$color_1;
-}
-input,
-select,
-textarea{
-    margin-bottom:1.125rem
-}
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="url"],
-input[type="phone"],
-input[type="tel"],
-input[type="number"],
-input[type="datetime"],
-input[type="date"],
-input[type="month"],
-input[type="week"],
-input[type="color"],
-input[type="time"],
-input[type="search"],
-input[type="range"],
-input[type="file"],
-input[type="datetime-local"],
-select,textarea{
-    border:1px solid $color_light;
-    padding:0.3375rem 0.39375rem
-}
+//--------------------------------------------------------------
+//  Base
+//--------------------------------------------------------------
 
-input[type="checkbox"],
-input[type="radio"]{
-    flex-grow:0;
-    height:1.85625rem;
-    margin-left:0;
-    margin-right:9px;
-    vertical-align:middle
-}
-input[type="checkbox"]+label,
-input[type="radio"]+label{
-    page-break-before:avoid
-}
-select[multiple]{
-    min-width:270px
-}
+//@import 'base/typography';
 
-/* code */
+//--------------------------------------------------------------
+//  Components
+//--------------------------------------------------------------
 
-pre,code,kbd,samp,var,output{
-    font:0.9rem Menlo,Monaco,Consolas,"Courier New",monospace
-}
-pre{
-    border-left:0 solid $color_2;
-    line-height:1.575rem;
-    overflow:auto;
-    padding-left:18px
-}
-pre code{
-    background:none;
-    border:0;
-    line-height:1.85625rem;
-    padding:0
-}
-code,kbd{
-    background:$color_light;
-    border-radius:3.6px;
-    color: $color_2;
-    display:inline-block;
-    line-height:1.125rem;
-    padding:0.225rem 0.39375rem 0.16875rem
-}
-kbd{
-    background:$color_2;
-    color:$color_1;
-}
-mark{
-    background:$color_light;
-    padding:0 0.225rem
-}
+//@import 'components/tables';
+//@import 'components/hr';
+//@import 'components/forms';
+//@import 'components/buttons';
+//@import 'components/aside';
 
-/* titles */
+//--------------------------------------------------------------
+//  Layout
+//--------------------------------------------------------------
 
-h1,h2,h3,h4,h5,h6{
-    color: $color_text;
-    margin-bottom:1.125rem
-}
-h1{
-    font-size:2.25rem;
-    font-weight:500;
-    line-height:2.7rem;
-    margin-top:4.5rem
-}
-h2{
-    font-size:1.575rem;
-    font-weight:400;
-    line-height:2.1375rem;
-    margin-top:3.375rem
-}
-h3{
-    font-size:1.35rem;
-    line-height:1.6875rem;
-    margin-top:2.25rem
-}
-h4{
-    font-size:1.125rem;
-    line-height:1.4625rem;
-    margin-top:1.125rem
-}
-h5{
-    font-size:0.9rem;
-    font-weight:bold;
-    line-height:1.35rem;
-    text-transform:uppercase
-}
-h6{
-    color: $color_1;
-    font-size:0.9rem;
-    font-weight:bold;
-    line-height:1.125rem;
-    text-transform:uppercase
-}
-
-/* links */
-
-a{
-    color: $color_1;
-    text-decoration:none
-}
-a:hover{
-    text-decoration:underline
-}
-
-/* line break */
-
-hr{
-    border-bottom:1px solid $color_light;
-}
-
-/* figure */
-
-figcaption,small{
-    font-size:0.95625rem
-}
-figcaption{
-    color:$color_2;
-}
-
-/* text variant */
-
-var,em,i{
-    font-style:italic
-}
-dt,strong,b{
-    font-weight:600
-}
-del,s{
-    text-decoration:line-through
-}
-ins,u{
-    text-decoration:underline
-}
-sub,sup{
-    font-size:75%;
-    line-height:0;
-    position:relative;
-    vertical-align:baseline
-}
-sup{
-    top:-.5em
-}
-sub{
-    bottom:-.25em
-}*{
-    border:0;
-    border-collapse:separate;
-    border-spacing:0;
-    box-sizing:border-box;
-    margin:0;
-    max-width:100%;
-    padding:0;
-    vertical-align:baseline
-}
-
-/* page spacing */
-
-html,body{
-    width:100%
-}
-html{
-    height:100%
-}
+//@import 'layout/layout';
 body{
-    background: $color_page;
-    color: $color_text;
     margin: 0;
+    padding: 0;
+    width:100%;
+    font-size: 100%;
+    background-color: $color_page;
 }
-
 main{
     width: $container;
     margin: 0 auto;
 }
-
-p,ul,ol,dl,blockquote,hr,pre,table,form,fieldset,figure,address{
-    margin-bottom:1.85625rem
+header{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    overflow: scroll;
+    width: 100%;
+    height: 20%;
+    background-color: $color_1;
+    nav {
+        width: $container;
+        margin: 0 auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        list-style: none;
+        // https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
+        a {
+            color: $color_1_contrast;
+            text-decoration: none;
+            font-family: $font-headings;
+            font-size: $font-size;
+        }
+        a:hover{
+            color: $color_2_contrast;
+            transition: all ease-out 0.5s;
+        }
+        img {
+            //
+        }
+    }
+}
+article{
+    color: $color_ink;
 }
 section{
-    margin-left:auto;
-    margin-right:auto;
-    width:900px
+    color: $color_ink;
 }
 aside{
-    float:right;
-    width:285px
+    color: $color_ink;
 }
-
-/* article */
-
-article,header,footer{
-    padding:43.2px
-}
-article{
-    background:$color_light;
-}
-
-/* navigation */
-
-nav{
-    width: 100%;
+footer{
     background-color: $color_2;
-    text-align:center
+    color: $color_2_contrast;
 }
-
-nav div {
-    width: $container;
-    margin: 0 auto;
-}
-
-nav ul{
-    list-style:none;
-    margin-left:0;
-    text-align:center
-}
-nav ul li{
-    display:inline-block;
-    margin-left:9px;
-    margin-right:9px;
-    vertical-align:middle
-}
-nav ul li:first-child{
-    margin-left:0
-}
-nav ul li:last-child{
-    margin-right:0
-}
-
-nav button {
-    margin: 1rem;
-}
-
-/* lists */
-
-ol,ul{
-    margin-left:31.5px
-}
-li dl,li ol,li ul{
-    margin-bottom:0
-}
-dl{
-    display:inline-block
-}
-dt{
-    padding:0 1.125rem
-}
-dd{
-    padding:0 1.125rem 0.28125rem
-}
-dd:last-of-type{
-    border-bottom:0 solid $color_light
-}
-dd+dt{
-    border-top:0 solid $color_light;
-    padding-top:0.5625rem
-}
-blockquote{
-    border-left:0 solid $color_light;
-    padding:0.28125rem 1.125rem 0.28125rem 0.99rem
-}
-blockquote footer{
-    color: $color_light;
-    font-size:0.84375rem;
-    margin:0
-}
-blockquote p{
-    margin-bottom:0
-}
-img{
-    height:auto;
-    margin:0 auto
-}
-figure img{
-    display:block
-}
-@media (max-width:767px){
-    body{
-        padding:18px 0
-    }
-article{
-    border:0;
-    padding:18px
-}
-header,footer{
-    padding:18px
-}
-textarea,input,select{
-    min-width:0
-}
-fieldset{
-    min-width:0
-}
-fieldset *{
-    flex-grow:1;
-    page-break-before:auto
-}
-section{width:auto}x:-moz-any-link{display:table-cell}}
