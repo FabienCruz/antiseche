@@ -6,11 +6,12 @@
 // sizes
 
 $container: 80%;
-$font-headings: sans-serif;
-$font-text: serif;
 $font-size: 1.1em; // 1em = 16px
 
+// text
 
+$font-headings: sans-serif;
+$font-text: sans-serif;
 
 // colors
 
@@ -24,6 +25,8 @@ $color_light_2: lightgrey;
 $color_ink: rgba(0, 0, 0, 0.75);
 $color_page: whitesmoke;
 
+// smooth transition
+$transition: all ease-out 0.5s;
 
 //--------------------------------------------------------------
 //  Utilities
@@ -46,6 +49,66 @@ $color_page: whitesmoke;
 //@import 'components/hr';
 //@import 'components/forms';
 //@import 'components/buttons';
+table {
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: $color_1;
+}
+a:hover {
+    color: $color_2_contrast;
+    //border-bottom: 1px solid $color_2_contrast;
+    transition: $transition;
+}
+
+button {
+    margin: 1em;
+    padding: 1em;
+    color: $color_1;
+    border: 1px solid $color_1;
+    border-radius: 5%;
+    background-color: $color_1_contrast;
+}
+button:hover {
+    background-color: $color_2_contrast;
+    transition: $transition;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-headings;
+}
+
+h1{
+    font-size: $font-size * 2;
+    color: $color_2;
+}
+h2{
+    font-size: $font-size * 1.8;
+    color: $color_ink;
+}
+h3{
+    font-size: $font-size * 1.6;
+    color: $color_ink;
+}
+h4{
+    font-size: $font-size * 1.4;
+    color: $color_ink;
+}
+h5{
+    font-size: $font-size * 1.2;
+    color: $color_ink;
+}
+h6{
+    font-size: $font-size;
+    color: $color_2;
+}
+p{
+    font-family: $font-text;
+    font-size: $font-size;
+    color: $color_ink;
+}
 //@import 'components/aside';
 
 //--------------------------------------------------------------
@@ -58,12 +121,32 @@ body{
     padding: 0;
     width:100%;
     font-size: 100%;
+    font-family: $font-text;
     background-color: $color_page;
 }
 main{
     width: $container;
     margin: 0 auto;
+    font-size: $font-size;
 }
+article{
+    color: $color_ink;
+}
+section{
+    color: $color_ink;
+}
+aside{
+    color: $color_ink;
+}
+footer{
+    background-color: $color_2;
+    color: $color_2_contrast;
+}
+
+//--------------------------------------------------------------
+// navbar and menu
+//--------------------------------------------------------------
+
 header{
     position: sticky;
     position: -webkit-sticky;
@@ -78,7 +161,6 @@ header{
         flex-flow: row wrap;
         justify-content: space-between;
         list-style: none;
-        // https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
         a {
             color: $color_1_contrast;
             text-decoration: none;
@@ -87,39 +169,34 @@ header{
         }
         a:hover{
             color: $color_2_contrast;
-            transition: all ease-out 0.5s;
+            transition: $transition;
         }
         img {
             // pour gérer un logo à gauche avec gestion taille
         }
         button {
             // gestion du menu
-            margin: 1em;
-            color: $color_1;
-            background-color: $color_1_contrast;
             div {
-                //display: none;
+                display: none;
                 position: absolute;
                 z-index: 1;
-                margin: 1em 0;
+                margin: 2em 0;
                 a {
                     display: block;
+                    text-align: left;
+                    background-color: $color_1_contrast;
+                    color: $color_1;
                     padding: 1em;
+                }
+                a:hover{
+                    background-color: $color_2_contrast;
+                    color: $color_1;
+                    transition: $transition;
                 }
             }
         }
+        button:hover div {
+            display: block;
+        }
     }
-}
-article{
-    color: $color_ink;
-}
-section{
-    color: $color_ink;
-}
-aside{
-    color: $color_ink;
-}
-footer{
-    background-color: $color_2;
-    color: $color_2_contrast;
 }

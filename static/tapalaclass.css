@@ -1,19 +1,88 @@
+table {
+  width: 100%; }
+
+a {
+  text-decoration: none;
+  color: darkblue; }
+
+a:hover {
+  color: orange;
+  transition: all ease-out 0.5s; }
+
+button {
+  margin: 1em;
+  padding: 1em;
+  color: darkblue;
+  border: 1px solid darkblue;
+  border-radius: 5%;
+  background-color: white; }
+
+button:hover {
+  background-color: orange;
+  transition: all ease-out 0.5s; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif; }
+
+h1 {
+  font-size: 2.2em;
+  color: steelblue; }
+
+h2 {
+  font-size: 1.98em;
+  color: rgba(0, 0, 0, 0.75); }
+
+h3 {
+  font-size: 1.76em;
+  color: rgba(0, 0, 0, 0.75); }
+
+h4 {
+  font-size: 1.54em;
+  color: rgba(0, 0, 0, 0.75); }
+
+h5 {
+  font-size: 1.32em;
+  color: rgba(0, 0, 0, 0.75); }
+
+h6 {
+  font-size: 1.1em;
+  color: steelblue; }
+
+p {
+  font-family: sans-serif;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.75); }
+
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   font-size: 100%;
+  font-family: sans-serif;
   background-color: whitesmoke; }
 
 main {
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  font-size: 1.1em; }
+
+article {
+  color: rgba(0, 0, 0, 0.75); }
+
+section {
+  color: rgba(0, 0, 0, 0.75); }
+
+aside {
+  color: rgba(0, 0, 0, 0.75); }
+
+footer {
+  background-color: steelblue;
+  color: orange; }
 
 header {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  overflow: scroll;
   width: 100%;
   height: 20%;
   background-color: darkblue; }
@@ -32,33 +101,22 @@ header {
     header nav a:hover {
       color: orange;
       transition: all ease-out 0.5s; }
-    header nav button {
-      margin: 1em;
-      background-color: white;
-      color: darkblue;
-    }
-      header nav button div {
-        /*display: none;*/
-        position: absolute;
-        z-index: 1;
-        margin: 1em 0;
-      }
+    header nav button div {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      margin: 2em 0; }
       header nav button div a {
         display: block;
-        padding: 1em;
-      }
-
-article {
-  color: rgba(0, 0, 0, 0.75); }
-
-section {
-  color: rgba(0, 0, 0, 0.75); }
-
-aside {
-  color: rgba(0, 0, 0, 0.75); }
-
-footer {
-  background-color: steelblue;
-  color: orange; }
+        text-align: left;
+        background-color: white;
+        color: darkblue;
+        padding: 1em; }
+      header nav button div a:hover {
+        background-color: orange;
+        color: darkblue;
+        transition: all ease-out 0.5s; }
+    header nav button:hover div {
+      display: block; }
 
 /*# sourceMappingURL=tapalaclass.css.map */
