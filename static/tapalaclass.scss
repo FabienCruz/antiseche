@@ -68,7 +68,6 @@ header{
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    overflow: scroll;
     width: 100%;
     height: 20%;
     background-color: $color_1;
@@ -91,7 +90,23 @@ header{
             transition: all ease-out 0.5s;
         }
         img {
-            //
+            // pour gérer un logo à gauche avec gestion taille
+        }
+        button {
+            // gestion du menu
+            margin: 1em;
+            color: $color_1;
+            background-color: $color_1_contrast;
+            div {
+                //display: none;
+                position: absolute;
+                z-index: 1;
+                margin: 1em 0;
+                a {
+                    display: block;
+                    padding: 1em;
+                }
+            }
         }
     }
 }

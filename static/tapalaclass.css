@@ -21,6 +21,8 @@ header {
     width: 80%;
     margin: 0 auto;
     display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
     list-style: none; }
     header nav a {
       color: white;
@@ -30,6 +32,21 @@ header {
     header nav a:hover {
       color: orange;
       transition: all ease-out 0.5s; }
+    header nav button {
+      margin: 1em;
+      background-color: white;
+      color: darkblue;
+    }
+      header nav button div {
+        /*display: none;*/
+        position: absolute;
+        z-index: 1;
+        margin: 1em 0;
+      }
+      header nav button div a {
+        display: block;
+        padding: 1em;
+      }
 
 article {
   color: rgba(0, 0, 0, 0.75); }
