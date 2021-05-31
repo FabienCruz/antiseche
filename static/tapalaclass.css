@@ -7,6 +7,7 @@ a {
 
 a:hover {
   color: orange;
+  border-bottom: 1px solid orange;
   transition: all ease-out 0.5s; }
 
 button {
@@ -26,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.2em;
-  color: steelblue; }
+  color: darkblue; }
 
 h2 {
   font-size: 1.98em;
@@ -100,6 +101,7 @@ header {
       font-size: 1.1em; }
     header nav a:hover {
       color: orange;
+      border-bottom: none;
       transition: all ease-out 0.5s; }
     header nav button div {
       display: none;

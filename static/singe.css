@@ -1,0 +1,177 @@
+/* General */
+body {
+    margin: 0;
+    font-family: serif;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.75);
+    background-color: whitesmoke;
+}
+
+p {
+  margin-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    margin-top: 2em;
+    color: green;
+    font-family: sans-serif;
+}
+
+h2 {
+  font-size: 140%;
+}
+
+h1 a, h2 a {
+  border-bottom: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.75);
+    border-bottom: solid 1px;
+  }
+
+a:hover {
+    color: green;
+    border-bottom: transparent;
+    transition: all ease-out 0.5s;
+  }
+
+figure {
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+
+figure img {
+  max-width: 12em;
+}
+
+figcaption {
+  margin-top: 0;
+  font-size: 0.9em;
+  color: rgba(0,0,0,0.5);
+}
+
+blockquote {
+  background-color: ghostwhite;
+  padding-left: 1em;
+  border-left: solid 3px green;
+  color: grey;
+  font-family: monospace;
+}
+
+/* Single column layout */
+nav section, header section, main, footer section {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0.5em;
+}
+
+/* Navigation panel */
+nav {
+    background-color: green;
+    height: 5em;
+    line-height: 1.2;
+}
+
+nav a {
+  font-family: sans-serif;
+  font-size: 200%;
+  color: white;
+  border-bottom: none;
+}
+
+nav p {
+  margin: 0;
+  color: lightgrey;
+  font-size: 0.9em;
+}
+
+nav a:hover, nav a:active {
+    color: lightgrey;
+    border-bottom: solid 1px lightgrey;
+}
+
+/* Footer */
+footer {
+    background: #f0f0f0;
+    border-top: thin solid #e0e0e0;
+    margin-top: 2em;
+    padding: 1em 0;
+    box-shadow: 0 100vh 0 100vh #f0f0f0;
+    text-align: center;
+}
+
+footer section p {
+    font-size: 0.8em;
+}
+
+footer a {
+    margin-right: 1em;
+}
+
+footer a:last-child {
+    margin-right: 0;
+}
+
+/* Posts */
+article {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+p.meta, div .more {
+    margin-top: 0;
+    font-size: 0.8em;
+    color: grey;
+    font-style: italic;
+}
+
+a.more:hover {
+  color: green;
+}
+
+p.summary {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+/* logo */
+#logo {
+  width: auto;
+  position: relative;
+  height: 1.4em;
+  top: 0.3em;
+  }
+
+/* responsiveness */
+
+@media (max-width: 1160px) {
+  body {
+    font-size: 1.1em;
+  }
+
+  nav section, header section, main, footer section {
+    width: 60%;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    font-size: 1em;
+  }
+
+  nav section, header section, main, footer section{
+    width: 90%;
+  }
+}
+
+@media (max-width: 420px) {
+  nav a {
+    font-size: 140%;
+  }
+}
