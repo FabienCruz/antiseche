@@ -3,19 +3,26 @@
 {% block page %}
 <form method="POST" action="{{ url_for('new') }}">
     {{ form.csrf_token }}
-    {{ form.title }}
-    {{ form.title.label }}
-    {{ form.text(rows="10", cols="150") }}
-    {{ form.draft }}
-    {{ form.draft.label }}
-    {{ form.file }}
-    <ul>
-        {% for error in form.file.errors %}
-        <li style="color: red;">{{ error }}</li>
-        {% endfor %}
-    </ul>
-    {{ form.file.label }}
-    <input type="submit" value="Créer">
+    <div>
+        {{ form.title (placeholder="titre")}}
+    </div>
+    <div>
+        {{ form.text }}
+    </div>
+    <div>
+        {{ form.draft.label }}
+        {{ form.draft }}
+    </div>
+    <div>
+        <ul>
+            {% for error in form.file.errors %}
+            <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <input type="submit" value="Créer">
+    </div>
 </form>
 {% endblock %}
 

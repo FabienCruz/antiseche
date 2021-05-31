@@ -5,13 +5,14 @@
 
 // sizes
 
-$container: 80%;
-$font-size: 1.1em; // 1em = 16px
+$container: 80%; 
+$font-size: 1.1em;
 
 // text
 
 $font-headings: sans-serif;
 $font-text: sans-serif;
+$font-code: monospace;
 
 // colors
 
@@ -49,6 +50,40 @@ $transition: all ease-out 0.5s;
 //@import 'components/hr';
 //@import 'components/forms';
 //@import 'components/buttons';
+form{
+    div {
+        margin: 1em;
+    }
+
+    input[type=submit]{
+        margin: 1em 0;
+        padding: 1em;
+        color:$color_1;
+        border: 1px solid $color_1;
+        border-radius: 5%;
+        background-color: white; }
+      
+    input[type=submit]:hover{
+    background-color: orange;
+    transition: all ease-out 0.5s; }
+
+    input[type=text]{
+        width: 100%;
+        font-family: $font-headings;
+        font-size: $font-size * 2;
+        color: $color_1;
+        border: 1px solid $color_1;
+    }
+      
+    textarea{
+    font-size: $font-size * 2;
+    font-family: $font-code;
+    width: 100%;
+    height: 50vh;
+    border: 1px solid $color_1;
+    }
+}
+
 table {
     width: 100%;
 }
@@ -56,6 +91,7 @@ table {
 a{
     text-decoration: none;
     color: $color_1;
+    font-size: $font-size;
 }
 a:hover {
     color: $color_2_contrast;
