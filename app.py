@@ -17,46 +17,8 @@ db = client.cheatsheet
 sheets = db.sheet
 
 #--------------------------
-# files management
+# Form
 #--------------------------
-directory = pathlib.Path.cwd() / 'contents/'
-files = list(directory.glob('*.md'))
-
-#--------------------------
-# Class
-#--------------------------
-
-class Cheatsheet():
-    def __init__(self, name):
-        self.name = name
-        self.path = pathlib.Path.cwd() / 'contents/' / name
-        self.body = {}
-
-    def save_db(self):
-        sheet = db.sheet
-
-    def save_md(self):
-        document = """---\ntitle: {}
-        \ndraft: {}
-        \ndate: {}
-        \n---
-        \n{}""".format(self.body['title'], 
-        self.body['draft'], 
-        self.body['date'],
-        self.body['content'])
-        return self.path.write_text(document)
-
-    def parse(self):
-        document = self.path.read_text()
-        # parse front-matter (between "---") and store key, value in body
-        fm_glob = re.split("-{3}", document)
-        fm_dtl = re.findall(".*:.*", fm_glob[1])
-        for item in fm_dtl:
-            item_dtl = re.split(":", item)
-            self.body[item_dtl[0]] = item_dtl[1].strip()
-        # store text in body
-        self.body['content'] = fm_glob[-1].strip()
-        return self.body
 
 class Form(FlaskForm):
     title = StringField('titre')
@@ -90,14 +52,19 @@ def new():
 @app.route('/new', methods=['POST'])
 def new_submission():
     form = Form(meta={'csrf': False})
-    name = "{}.md".format(form.file.data)
-    new_document = Cheatsheet(name)
-    new_document.body['title'] = form.title.data
-    new_document.body['draft'] = form.draft.data
-    new_document.body['date'] = datetime.datetime.now()
-    new_document.body['content'] = form.text.data
-    new_document.save_md()
-    return redirect(url_for('open_file', file_selected=name))
+    new_document = {}
+    new_document['title'] = form.title.data
+    new_document['draft'] = form.draft.data
+    new_document['date'] = datetime.datetime.now()
+    new_document['content'] = form.text.data
+    sheets.insert_one(new_document)
+    return redirect(url_for('index'))
+
+@app.route('/delete/<id>', methods=['DELETE'])
+def delete():
+    #écrire eventlistener en javascript dans la page
+    sheets.delete_one({"_id": ObjectId(id)})
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.debug=True

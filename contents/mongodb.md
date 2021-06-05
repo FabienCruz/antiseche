@@ -5,6 +5,8 @@ date: 14-05-2021
 ---
 [Real python - introduction to mongodb and python](https://realpython.com/introduction-to-mongodb-and-python/) niveau débutant.
 
+[Developper mongodb cheat-sheet](https://developer.mongodb.com/quickstart/cheat-sheet/) une cheatsheet pour exécuter toutes les actions CRUD
+
 [MongoDB - University](https://university.mongodb.com/courses/M001/about) niveau débutant sur le site officiel MongoDB. 8.5 heures de cours gratuits.
 
 [Udacity - Data wrangling with mongo](https://www.udacity.com/course/data-wrangling-with-mongodb--ud032) Niveau plus avancé. 2 mois. gratuit.
@@ -80,7 +82,8 @@ un seul:
 
 ## Utiliser pymongo
 
-[documentation officielle](https://pymongo.readthedocs.io/en/stable/index.html)
+[documentation officielle](https://pymongo.readthedocs.io/en/stable/index.html) En bref, les bases de données mongodb stockent des données JSON qui sont des objets Javascript transmis sous forme de chaînes de caractères. Pymongo permet d'utiliser des dictionnaires Python pour manipuler les données.
+
 
 ### Installer pymongo
 
