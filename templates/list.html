@@ -3,10 +3,27 @@
     <table>
     {% for file in files %}
         <tr>
-            <td><a href="/{{ file._id }}">{{ file.title }}</a></td>
+            <td><a href="/sheet/{{ file._id }}">{{ file.title }}</a></td>
             <td><button>modifier </button></td>
-            <td><button><a href="/delete/{{ file._id }}" method="delete">supprimer</a></button></td>
+            <td><button class="delete" data-id="{{ file._id }}">supprimer</button></td>
         </tr>
     {% endfor %}
     </table>
+
+<script>
+    const deleteButtons = document.querySelectorAll('.delete');
+    console.log(deleteButtons)
+    for (let i = 0; i < deleteButtons.length; i++){
+        const deleteButton = deleteButtons[i];
+        deleteButton.onclick = function(e){
+            console.log(e)
+            const sheetId = e.target.dataset['id'];
+            console.log('sheetID: ', sheetId);
+            fetch('/sheet/' + sheetId, {
+                method: 'DELETE',
+            })
+        } 
+    }
+
+</script>
 {% endblock %}

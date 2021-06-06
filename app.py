@@ -1,6 +1,6 @@
 import pathlib, glob, re, markdown, datetime
 from bson.objectid import ObjectId
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
 from wtforms.validators import InputRequired, Length, Regexp
@@ -38,18 +38,18 @@ def index():
         files.append(file)
     return render_template('list.html', files=files)
 
-@app.route('/<id>')
+@app.route('/sheet/<id>')
 def open_file(id):
     sheet = sheets.find_one({"_id": ObjectId(id)})
     content = markdown.markdown(sheet['content'])
     return render_template('sheet.html', title=sheet['title'], date=sheet['date'], content=content)
 
-@app.route('/new', methods=['GET'])
+@app.route('/sheet/new', methods=['GET'])
 def new():
     form = Form()
     return render_template('form.html', form=form)
 
-@app.route('/new', methods=['POST'])
+@app.route('/sheet/new', methods=['POST'])
 def new_submission():
     form = Form(meta={'csrf': False})
     new_document = {}
@@ -60,11 +60,10 @@ def new_submission():
     sheets.insert_one(new_document)
     return redirect(url_for('index'))
 
-@app.route('/delete/<id>', methods=['DELETE'])
-def delete():
-    #écrire eventlistener en javascript dans la page
+@app.route('/sheet/<id>', methods=['DELETE'])
+def delete(id):
     sheets.delete_one({"_id": ObjectId(id)})
-    return redirect(url_for('index'))
+    return render_template('list.html')
 
 if __name__ == '__main__':
     app.debug=True

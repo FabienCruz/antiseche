@@ -30,26 +30,9 @@ $color_page: whitesmoke;
 $transition: all ease-out 0.5s;
 
 //--------------------------------------------------------------
-//  Utilities
+// Form
 //--------------------------------------------------------------
 
-//@import 'utils/mixins';
-//@import 'utils/variables';
-
-//--------------------------------------------------------------
-//  Base
-//--------------------------------------------------------------
-
-//@import 'base/typography';
-
-//--------------------------------------------------------------
-//  Components
-//--------------------------------------------------------------
-
-//@import 'components/tables';
-//@import 'components/hr';
-//@import 'components/forms';
-//@import 'components/buttons';
 form{
     div {
         margin: 1em;
@@ -84,9 +67,9 @@ form{
     }
 }
 
-table {
-    width: 100%;
-}
+//--------------------------------------------------------------
+// Links and buttons
+//--------------------------------------------------------------
 
 a{
     text-decoration: none;
@@ -111,6 +94,10 @@ button:hover {
     background-color: $color_2_contrast;
     transition: $transition;
 }
+
+//--------------------------------------------------------------
+// Typography
+//--------------------------------------------------------------
 
 h1, h2, h3, h4, h5, h6 {
     font-family: $font-headings;
@@ -145,13 +132,11 @@ p{
     font-size: $font-size;
     color: $color_ink;
 }
-//@import 'components/aside';
 
 //--------------------------------------------------------------
 //  Layout
 //--------------------------------------------------------------
 
-//@import 'layout/layout';
 body{
     margin: 0;
     padding: 0;
@@ -177,6 +162,10 @@ aside{
 footer{
     background-color: $color_2;
     color: $color_2_contrast;
+}
+
+table {
+    width: 100%;
 }
 
 //--------------------------------------------------------------
@@ -208,10 +197,12 @@ header{
             transition: $transition;
         }
         img {
-            // pour gérer un logo à gauche avec gestion taille
+            // to deal with logo images
         }
+
+// menu button
+
         button {
-            // gestion du menu
             div {
                 display: none;
                 position: absolute;
