@@ -3,6 +3,7 @@ from bson.objectid import ObjectId
 from flask import Flask, render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
+from wtforms.fields.core import RadioField
 from wtforms.validators import AnyOf, InputRequired, Length, Regexp
 from pymongo import MongoClient
 
@@ -24,7 +25,7 @@ class Form(FlaskForm):
     title = StringField('titre')
     file = StringField('fichier', validators=[InputRequired(), Length(min=3, max=20, message='doit avoir entre 3 et 20 caractères'), Regexp(r'^[\w]+$', message="uniquement alphanumérique et sans espace")])
     date = DateTimeField('date')
-    draft = StringField('brouillon', default="True", validators=[InputRequired(), AnyOf(['True', 'False'])])
+    draft = RadioField('draft', choices=[('True', 'brouillon'), ('False', 'publication')], default='True')
     text = TextAreaField('texte')
 
 #--------------------------
@@ -64,13 +65,9 @@ def delete(id):
 
 @app.route('/sheets/<draft>')
 def show_list(draft):
-    print(draft)
     files = []
     for file in sheets.find({'draft': draft}, {'title': 1}):
         files.append(file)
-    #for file in sheets.find():
-    #    files.append(file)
-    print(files)
     return render_template('list.html', files=files)
 
 if __name__ == '__main__':

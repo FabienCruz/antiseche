@@ -10,8 +10,12 @@
         {{ form.text }}
     </div>
     <div>
-        {{ form.draft.label }}
-        {{ form.draft }}
+        {% for choice in form.draft %}
+            <tr>
+                <td>{{ choice }}</td>
+                <td>{{ choice.label }}</td>
+            </tr>
+        {% endfor %}
     </div>
     <div>
         <ul>
