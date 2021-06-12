@@ -3,7 +3,7 @@ from bson.objectid import ObjectId
 from flask import Flask, render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
-from wtforms.validators import InputRequired, Length, Regexp
+from wtforms.validators import AnyOf, InputRequired, Length, Regexp
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -24,7 +24,7 @@ class Form(FlaskForm):
     title = StringField('titre')
     file = StringField('fichier', validators=[InputRequired(), Length(min=3, max=20, message='doit avoir entre 3 et 20 caractères'), Regexp(r'^[\w]+$', message="uniquement alphanumérique et sans espace")])
     date = DateTimeField('date')
-    draft = BooleanField('brouillon', default="checked")
+    draft = StringField('brouillon', default="True", validators=[InputRequired(), AnyOf(['True', 'False'])])
     text = TextAreaField('texte')
 
 #--------------------------
@@ -33,10 +33,7 @@ class Form(FlaskForm):
 
 @app.route('/')
 def index():
-    files = []
-    for file in sheets.find({}, {'title': 1}):
-        files.append(file)
-    return render_template('list.html', files=files)
+    return redirect(url_for('show_list', draft="False"))
 
 @app.route('/sheet/<id>')
 def open_file(id):
@@ -63,7 +60,18 @@ def new_submission():
 @app.route('/sheet/<id>', methods=['DELETE'])
 def delete(id):
     sheets.delete_one({"_id": ObjectId(id)})
-    return render_template('list.html')
+    return redirect(url_for('show_list', draft=True))
+
+@app.route('/sheets/<draft>')
+def show_list(draft):
+    print(draft)
+    files = []
+    for file in sheets.find({'draft': draft}, {'title': 1}):
+        files.append(file)
+    #for file in sheets.find():
+    #    files.append(file)
+    print(files)
+    return render_template('list.html', files=files)
 
 if __name__ == '__main__':
     app.debug=True
