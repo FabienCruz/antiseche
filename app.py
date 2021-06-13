@@ -1,10 +1,10 @@
 import pathlib, glob, re, markdown, datetime
 from bson.objectid import ObjectId
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, BooleanField, DateTimeField
-from wtforms.fields.core import RadioField
-from wtforms.validators import AnyOf, InputRequired, Length, Regexp
+from wtforms import StringField, TextAreaField, RadioField, DateTimeField
+#from wtforms.fields.core import RadioField
+from wtforms.validators import InputRequired, Length, Regexp
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ class Form(FlaskForm):
 
 @app.route('/')
 def index():
-    return redirect(url_for('show_list', draft="False"))
+    return redirect(url_for('show_list', draft='False'))
 
 @app.route('/sheet/<id>')
 def open_file(id):
@@ -60,10 +60,13 @@ def new_submission():
 
 @app.route('/sheet/<id>', methods=['DELETE'])
 def delete(id):
+    sheet = sheets.find_one({"_id": ObjectId(id)})
+    draft = sheet['draft']
     sheets.delete_one({"_id": ObjectId(id)})
-    return redirect(url_for('show_list', draft=True))
+    flash ('the document is deleted')
+    return redirect(url_for('show_list', draft=draft))
 
-@app.route('/sheets/<draft>')
+@app.route('/sheets/<draft>', methods=['GET', 'DELETE'])
 def show_list(draft):
     files = []
     for file in sheets.find({'draft': draft}, {'title': 1}):

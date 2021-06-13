@@ -16,6 +16,19 @@
             {% include 'navigation.html' %}
         </header>
     <main>
+        <section>
+            {% block message %}
+            {% endblock %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endwith %}
+        </section>
         {% block page %}
         {% endblock %}
     </main>
