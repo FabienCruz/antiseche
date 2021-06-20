@@ -4,7 +4,7 @@
     {% for file in files %}
         <tr>
             <td><a href="/sheet/{{ file._id }}">{{ file.title }}</a></td>
-            <td><button>modifier </button></td>
+            <td><button class="update" data-id="{{ file._id }}">modifier </button></td>
             <td><button class="delete" data-id="{{ file._id }}">supprimer</button></td>
         </tr>
     {% endfor %}
@@ -12,17 +12,25 @@
 
 <script>
     const deleteButtons = document.querySelectorAll('.delete');
-    console.log(deleteButtons)
     for (let i = 0; i < deleteButtons.length; i++){
         const deleteButton = deleteButtons[i];
         deleteButton.onclick = function(e){
-            console.log(e)
             const sheetId = e.target.dataset['id'];
-            console.log('sheetID: ', sheetId);
             fetch('/sheet/' + sheetId, {
                 method: 'DELETE',
             })
-        } 
+            .then(location.reload())
+        }
+    }
+
+    const updateButtons = document.querySelectorAll('.update');
+    for (let i = 0; i < updateButtons.length; i++){
+        const updateButton = updateButtons[i];
+        updateButton.onclick = function(e){
+            const sheetId = e.target.dataset['id'];
+            fetch('/sheet/update/' + sheetId)
+            .then(location.replace('/sheet/update/' + sheetId))
+        }
     }
 
 </script>
