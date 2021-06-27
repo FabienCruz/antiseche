@@ -1,7 +1,7 @@
 
 {% extends "index.html" %}
 {% block page %}
-<form method="POST" action="{{ url_for('new') }}">
+<form method="POST" action="{{ url_for(direction, id=id) }}">
     {{ form.csrf_token }}
     <div>
         {{ form.title (placeholder="titre")}}
@@ -25,7 +25,7 @@
         </ul>
     </div>
     <div>
-        <input type="submit" value="Créer">
+        <input type="submit" value="{{ btn_value }}">
     </div>
 </form>
 {% endblock %}

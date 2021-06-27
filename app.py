@@ -37,6 +37,14 @@ def get_files(draft):
         files.append(file)
     return files
 
+def get_form_datas(form):
+    form_data = {}
+    form_data['title'] = form.title.data
+    form_data['draft'] = form.draft.data
+    form_data['date'] = datetime.datetime.now()
+    form_data['content'] = form.text.data
+    return form_data
+
 #--------------------------
 # Routes
 #--------------------------
@@ -49,34 +57,48 @@ def index():
 def open_file(id):
     sheet = sheets.find_one({"_id": ObjectId(id)})
     content = markdown.markdown(sheet['content'])
-    return render_template('sheet.html', title=sheet['title'], date=sheet['date'], content=content)
+    return render_template('sheet.html', 
+    title=sheet['title'], 
+    date=sheet['date'], 
+    content=content)
 
 @app.route('/sheet/new', methods=['GET'])
 def new():
-    form = Form()
-    return render_template('form.html', form=form)
+    form = Form(meta={'csrf': False})
+    return render_template('form.html', 
+    form=form, 
+    direction='new',
+    btn_value='Créer')
 
 @app.route('/sheet/new', methods=['POST'])
 def new_submission():
     form = Form(meta={'csrf': False})
-    new_document = {}
-    new_document['title'] = form.title.data
-    new_document['draft'] = form.draft.data
-    new_document['date'] = datetime.datetime.now()
-    new_document['content'] = form.text.data
-    sheets.insert_one(new_document)
+    new_data = get_form_datas(form)
+    sheets.insert_one(new_data)
     flash ('the document is created')
     return redirect(url_for('index'))
 
 @app.route('/sheet/update/<id>', methods=['GET'])
-def update(id):
-    form = Form()
+def read_to_update(id):
+    form = Form(meta={'csrf': False})
     sheet = sheets.find_one({"_id": ObjectId(id)})
     form.title.data = sheet['title']
     form.draft.data = sheet['draft']
     form.text.data = sheet['content']
-    return render_template('form.html', form=form)
+    direction = 'update'
+    return render_template('form.html', 
+    form=form, 
+    direction=direction,
+    id=id,
+    btn_value='Modifier')
 
+@app.route('/sheet/update/<id>', methods=['POST'])
+def update(id):
+    form = Form(meta={'csrf': False})
+    new_data = get_form_datas(form)
+    sheets.update_one({"_id": ObjectId(id)}, { "$set": new_data})
+    flash ('the document is updated')
+    return redirect(url_for('index'))
 
 @app.route('/sheet/<id>', methods=['DELETE'])
 def delete(id):
@@ -107,8 +129,8 @@ x read file
 x create file
 x differenciate draft and publish
 x show only publish
-delete file
-modify file
+x delete file
+x modify file
 
 --create access and authorization
 
