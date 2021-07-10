@@ -1,9 +1,8 @@
 import markdown, datetime
 from bson.objectid import ObjectId
-from flask import Flask, render_template, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, RadioField, DateTimeField
-#from wtforms.fields.core import RadioField
 from wtforms.validators import InputRequired, Length, Regexp
 from pymongo import MongoClient
 
