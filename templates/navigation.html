@@ -1,8 +1,10 @@
 <nav>
-    <li>
-        <h2>Antisèche</h2>
-        {% for nav_item in navlist %}
-            <ul><a href="/{{ nav_item.name }}">{{ nav_item.title }}</a></ul>
-        {% endfor %}
-    </li>
+    <h2><a href="/">Antisèche</a></h2>
+    <button>menu
+        <div>
+            <a href="/sheet/new"> ajouter</a>
+            <a href="/sheets/True">brouillons</a>
+        </div>
+    </button>
 </nav>
+

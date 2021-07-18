@@ -1,0 +1,32 @@
+
+{% extends "index.html" %}
+{% block page %}
+<form method="POST" action="{{ url_for(direction, id=id) }}">
+    {{ form.csrf_token }}
+    <div>
+        {{ form.title (placeholder="titre")}}
+    </div>
+    <div>
+        {{ form.text }}
+    </div>
+    <div>
+        {% for choice in form.draft %}
+            <tr>
+                <td>{{ choice }}</td>
+                <td>{{ choice.label }}</td>
+            </tr>
+        {% endfor %}
+    </div>
+    <div>
+        <ul>
+            {% for error in form.file.errors %}
+            <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <input type="submit" value="{{ btn_value }}">
+    </div>
+</form>
+{% endblock %}
+

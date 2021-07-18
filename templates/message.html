@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block message %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="background-color: orange"><strong>{{ message }}</strong></p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
