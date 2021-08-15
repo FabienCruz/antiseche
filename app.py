@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = 'secret'
 #--------------------------
 # Database
 #--------------------------
-client = MongoClient()
+client = MongoClient("mongodb+srv://FabTest:DataBaseFabTest@fabtest.vo6ax.mongodb.net/FabTest?retryWrites=true&w=majority")
 db = client.cheatsheet
 sheets = db.sheet
 
